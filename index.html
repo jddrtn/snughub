@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<!-- Declares the document type as HTML5 -->
 <html lang="en">
-<!-- Sets the language of the document to English -->
 <head>
-    <meta charset="UTF-8">
-    <!-- Specifies the character encoding for the document -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Ensures proper rendering and touch zooming on smaller devices -->
-    <title>Document</title>
-    <!-- Defines the title of the document which is displayed in the browser tab -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snug Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <!-- Main heading of the webpage -->
-    <p>This is a basic HTML structure.</p>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Snug Hub</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">TV Shows</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">New Releases</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">What's Trending</a></li>
+            </ul>
+          </div>
+      
+          <!-- Search bar stays to the right -->
+          <form class="d-flex ms-auto search-form" role="search">
+            <input class="form-control me-2 search-input" type="search" placeholder="Search movies or shows..." aria-label="Search" />
+            <button class="btn btn-outline-warning" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Find Where to Watch Your Favorite Movies & TV Shows</h1>
+      <p>All streaming services in one place</p>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="container content-section">
+    <h2 class="text-center mb-4">Trending Now</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <!-- Example Cards -->
+      <div class="col">
+        <div class="card">
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 1" />
+          <div class="card-body">
+            <h5 class="card-title">Movie Title 1</h5>
+            <p class="card-text">Description of the movie goes here.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 2" />
+          <div class="card-body">
+            <h5 class="card-title">Movie Title 2</h5>
+            <p class="card-text">Description of the movie goes here.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 3" />
+          <div class="card-body">
+            <h5 class="card-title">Movie Title 3</h5>
+            <p class="card-text">Description of the movie goes here.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
 </body>
 </html>
