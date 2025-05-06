@@ -1,58 +1,70 @@
+/* Styling for the navigation links in the navbar */
 .navbar-nav .nav-link {
-  color: #ffffff; 
+  color: #000000; /* Default color for nav links */
 }
 
-/* Highlight on hover */
+/* Styling for navigation links when hovered */
 .navbar-nav .nav-link:hover {
-  color: #B56A5A; /* Rustic Clay */
+  color: #1a39d6; /* Highlight color on hover */
 }
 
-/* Active link styling */
+/* Styling for the active navigation link */
 .navbar-nav .nav-link.active {
-  color: #B56A5A;
-  font-weight: bold;
+  color: #000000; /* Primary color for active link */
+  font-weight: bold; /* Bold font for active link */
 }
 
+/* Styling for the brand/logo in the navbar */
+.navbar-brand {
+  font-family: 'Nunito', sans-serif; /* Font family for the brand */
+  color: #000000; /* Override color for the brand */
+  font-weight: 700; /* Bold font weight for the brand */
+}
 
-
+/* Global body styling */
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f8f9fa;
-  margin: 0;
-  padding: 0;
+  font-family: 'Roboto', sans-serif; /* Font family for the body */
+  background-color: #f8f9fa; /* Light gray background color */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
+/* Styling for the hero section */
 .hero {
-  background-color: #D8CFC4;
-  background-size: cover;
-  height: 60vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: rgb(255, 255, 255);
+  background-color: #000000; /* Primary background color */
+  background-size: cover; /* Ensure background covers the section */
+  height: 60vh; /* Set height to 60% of the viewport */
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  text-align: center; /* Center text alignment */
+  color: rgb(255, 255, 255); /* White text color */
 }
 
+/* Styling for the main heading in the hero section */
 .hero h1 {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 3rem; /* Large font size for the heading */
+  font-weight: 700; /* Bold font weight */
 }
 
+/* Styling for the paragraph in the hero section */
 .hero p {
-  font-size: 1.25rem;
+  font-size: 1.25rem; /* Medium font size for the paragraph */
 }
 
+/* Styling for content sections */
 .content-section {
-  padding: 2rem 0;
+  padding: 2rem 0; /* Add vertical padding */
 }
 
+/* Styling for images in cards */
 .card-img-top {
-  height: 200px;
-  object-fit: cover;
+  height: 200px; /* Set fixed height for images */
+  object-fit: cover; /* Ensure images cover the area without distortion */
 }
 
+/* Styling for the search input field */
 .search-form .search-input {
-  width: 600px;
-  max-width: 100%;
+  width: 600px; /* Set width for the search input */
+  max-width: 100%; /* Ensure it doesn't exceed the container width */
 }
-
