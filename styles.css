@@ -1,3 +1,5 @@
+/* Index page */
+
 /* Styling for the navigation links in the navbar */
 .navbar-nav .nav-link {
   color: #000000; /* Default color for nav links */
@@ -14,12 +16,31 @@
   font-weight: bold; /* Bold font for active link */
 }
 
-/* Styling for the brand/logo in the navbar */
+/* Styling for the website title in the navbar */
 .navbar-brand {
   font-family: 'Nunito', sans-serif; /* Font family for the brand */
   color: #000000; /* Override color for the brand */
-  font-weight: 700; /* Bold font weight for the brand */
+  font-weight: 750; /* Bold font weight for the brand */
 }
+
+.navbar-brand:hover {
+  color: black !important;
+}
+
+.custom-search-btn {
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: white; 
+  color: #000000;          
+  border: 2px solid #000000;
+}
+
+.custom-search-btn:hover {
+  background-color: #000000;
+  color: white;
+}
+
 
 /* Global body styling */
 body {
@@ -67,4 +88,69 @@ body {
 .search-form .search-input {
   width: 600px; /* Set width for the search input */
   max-width: 100%; /* Ensure it doesn't exceed the container width */
+}
+/* Wrapper for the entire carousel */
+.carousel-wrapper {
+  width: 100vw; /* Full viewport width */
+  overflow: hidden; /* Hide overflowing content */
+  position: relative; /* Position relative for arrow placement */
+}
+
+/* Styling for the card carousel container */
+.card-carousel {
+  display: flex; /* Use flexbox for horizontal layout */
+  overflow-x: hidden; /* Hides horizontal scrollbars */
+  gap: 1rem; /* Add spacing between cards */
+  padding: 1rem 2rem; /* Add padding around the carousel */
+}
+
+/* Styling for individual cards in the carousel */
+.card {
+  min-width: 250px; /* Set minimum width for cards */
+  flex: 0 0 auto; /* Prevent cards from shrinking or growing */
+}
+
+/* Styling for the carousel navigation arrows */
+.carousel-arrow {
+  position: absolute; /* Position arrows relative to the carousel */
+  top: 50%; /* Center arrows vertically */
+  transform: translateY(-50%); /* Adjust for perfect vertical centering */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  color: white; /* White arrow color */
+  border: none; /* Remove default border */
+  font-size: 2rem; /* Large font size for arrows */
+  padding: 0.5rem 1rem; /* Add padding for clickable area */
+  z-index: 10; /* Ensure arrows appear above other elements */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Styling for the left navigation arrow */
+.carousel-arrow.left {
+  left: 0; /* Position arrow on the left */
+}
+
+/* Styling for the right navigation arrow */
+.carousel-arrow.right {
+  right: 0; /* Position arrow on the right */
+}
+
+
+/*People page*/
+
+#people {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.person {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 180px;
+  text-align: center;
+}
+
+.person img {
+  width: 100%;
+  height: auto;
 }

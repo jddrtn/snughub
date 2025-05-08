@@ -17,13 +17,16 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
 
-    <!-- Navigation Bar -->
+<body>
+  <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg custom-navbar navbar-dark bg-light">
         <div class="container-fluid">
           <!-- Brand logo -->
-          <a class="navbar-brand" href="index.html">Snug Hub</a>
+          <a class="navbar-brand" href="index.html">
+            <img src="images/snug-logo.png" alt="Logo" width="120" height="120" style="margin-right: -30px;">
+            Snug Hub
+          </a>
           
           <!-- Toggler button for mobile view -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -35,7 +38,7 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
               <!-- Navigation links -->
               <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="shows.html">TV Shows</a></li>
+              <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li>
               <li class="nav-item"><a class="nav-link active" href="people.html">People</a></li>
               <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
             </ul>
@@ -43,64 +46,24 @@
       
           <!-- Search bar -->
           <form class="d-flex ms-auto search-form" role="search">
-            <input class="form-control me-2 search-input" type="search" placeholder="Search movies or shows..." aria-label="Search" />
-            <button class="btn btn-outline-warning" type="submit">Search</button>
+            <input class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
+            <button class="btn custom-search-btn" type="submit">Search</button>
           </form>
         </div>
       </nav>
+
+<!-- Content Section -->
+      <h1>People</h1>
+      <div id="people"></div>
+      <button id="loadMore">Load More</button>
       
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="hero-text">
-      <!-- Hero title and subtitle -->
-      <h1>Find Where to Watch Your Favorite TV Shows</h1>
-      <p>All streaming services in one place</p>
-    </div>
-  </div>
 
-  <!-- Content Section -->
-  <div class="container content-section">
-    <h2 class="text-center mb-4">Trending Now</h2> <!-- Section heading -->
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <!-- Example Cards -->
-      <div class="col">
-        <div class="card">
-          <!-- Placeholder image for the card -->
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 1" />
-          <div class="card-body">
-            <!-- Card title and description -->
-            <h5 class="card-title">Show Title 1</h5>
-            <p class="card-text">Description of the show goes here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 2" />
-          <div class="card-body">
-            <h5 class="card-title">Show Title 2</h5>
-            <p class="card-text">Description of the show goes here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 3" />
-          <div class="card-body">
-            <h5 class="card-title">Show Title 3</h5>
-            <p class="card-text">Description of the movie goes here.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap JavaScript Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   
   <!-- Custom JavaScript -->
-  <script src="script.js"></script>
-
+  <script src="people.js"></script>
 </body>
 </html>

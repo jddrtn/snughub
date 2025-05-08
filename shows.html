@@ -23,7 +23,10 @@
     <nav class="navbar navbar-expand-lg custom-navbar navbar-dark bg-light">
         <div class="container-fluid">
           <!-- Brand logo -->
-          <a class="navbar-brand" href="index.html">Snug Hub</a>
+          <a class="navbar-brand" href="index.html">
+            <img src="images/snug-logo.png" alt="Logo" width="120" height="120" style="margin-right: -30px;">
+            Snug Hub
+          </a>
           
           <!-- Toggler button for mobile view -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -34,7 +37,7 @@
           <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li> <!-- Link to Home page -->
-              <li class="nav-item"><a class="nav-link active" href="shows.html">TV Shows</a></li> <!-- Link to TV Shows page -->
+              <li class="nav-item"><a class="nav-link active" href="shows.html">Shows</a></li> <!-- Link to TV Shows page -->
               <li class="nav-item"><a class="nav-link" href="people.html">People</a></li> <!-- Link to People page -->
               <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li> <!-- Link to Schedule page -->
             </ul>
@@ -43,7 +46,7 @@
           <!-- Search bar -->
           <form class="d-flex ms-auto search-form" role="search">
             <input class="form-control me-2 search-input" type="search" placeholder="Search movies or shows..." aria-label="Search" /> <!-- Search input -->
-            <button class="btn btn-outline-warning" type="submit">Search</button> <!-- Search button -->
+            <button class="btn custom-search-btn" type="submit">Search</button> <!-- Search button -->
           </form>
         </div>
       </nav>
@@ -52,8 +55,8 @@
   <!-- Hero Section -->
   <div class="hero">
     <div class="hero-text">
-      <h1>Find Where to Watch Your Favorite TV Shows</h1> <!-- Main heading -->
-      <p>All streaming services in one place</p> <!-- Subheading -->
+      <h1>The Warmth of Your Favorite Shows, All in One Place</h1> <!-- Hero heading -->
+      <p>Discover Where to Stream Your Go-To Comfort Shows</p> <!-- Subheading -->
     </div>
   </div>
 
@@ -64,7 +67,7 @@
       <!-- Example Cards -->
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 1" /> <!-- Placeholder image -->
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 1" /> <!-- Placeholder image -->
           <div class="card-body">
             <h5 class="card-title">Show Title 1</h5> <!-- Card title -->
             <p class="card-text">Description of the show goes here.</p> <!-- Card description -->
@@ -73,7 +76,7 @@
       </div>
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 2" /> <!-- Placeholder image -->
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 2" /> <!-- Placeholder image -->
           <div class="card-body">
             <h5 class="card-title">Show Title 2</h5> <!-- Card title -->
             <p class="card-text">Description of the show goes here.</p> <!-- Card description -->
@@ -82,7 +85,7 @@
       </div>
       <div class="col">
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Movie 3" /> <!-- Placeholder image -->
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 3" /> <!-- Placeholder image -->
           <div class="card-body">
             <h5 class="card-title">Show Title 3</h5> <!-- Card title -->
             <p class="card-text">Description of the movie goes here.</p> <!-- Card description -->
@@ -94,9 +97,7 @@
 
   <!-- Bootstrap JavaScript for interactivity -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Link to custom JavaScript file -->
+   <!-- Link to custom JavaScript file -->
   <script src="script.js"></script>
-
 </body>
 </html>
