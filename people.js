@@ -11,7 +11,7 @@
           const personDiv = document.createElement('div');  // Create a new div for each person
           personDiv.classList.add('person');  // Add 'person' class for styling
   
-          // Add the person's name and image (if available)
+          // Add the person's name and image
           personDiv.innerHTML = `
             <h3>${person.name}</h3>
             ${person.image ? `<img src="${person.image.medium}" alt="${person.name}">` : '<p>No image</p>'}

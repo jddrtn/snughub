@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Show Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid">
+          <!-- Brand Name -->
+          <a class="navbar-brand" href="index.html">
+            <img src="images/snug-logo.png" alt="Logo" width="60" height="60" style="margin-right: 0px;">
+            Snug Hub
+          </a>
+          
+          <!-- Toggler for mobile view -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <!-- Navigation Links -->
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li> <!-- Home link -->
+              <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li> <!-- TV Shows link -->
+              <li class="nav-item"><a class="nav-link" href="people.html">People</a></li> <!-- People link -->
+              <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li> <!-- Schedule link -->
+            </ul>
+          </div>
+      
+          <!-- Search Bar -->
+          <form class="d-flex ms-auto search-form" role="search">
+          <!-- Input field for search query --> 
+          <input class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" /> <!-- Search input -->
+          <!-- Submit button for the search form -->
+          <button class="btn custom-search-btn" type="submit">Search</button> <!-- Search button -->
+          </form>
+        </div>
+      </nav>
+<body class="bg-light">
+  <div class="container py-5" id="showDetails">
+    <p>Loading...</p>
+  </div>
+
+  <script>
+    let showId, episodes = [], cast = [], showData;
+    let castPage = 0;
+    const CAST_PER_PAGE = 8;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const params = new URLSearchParams(window.location.search);
+      showId = params.get('id');
+      const defaultTab = params.get('tab') || 'overview';
+
+      if (!showId) return;
+
+      // Fetch show info
+      showData = await fetch(`https://api.tvmaze.com/shows/${showId}`).then(res => res.json());
+
+      document.getElementById('showDetails').innerHTML = `
+        <h1 class="mb-3">${showData.name}</h1>
+
+        <ul class="nav nav-tabs" id="showTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">Overview</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="cast-tab" data-bs-toggle="tab" data-bs-target="#cast" type="button" role="tab">Cast</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="episodes-tab" data-bs-toggle="tab" data-bs-target="#episodes" type="button" role="tab">Episodes</button>
+          </li>
+        </ul>
+
+        <div class="tab-content pt-4">
+          <div class="tab-pane fade" id="overview" role="tabpanel"></div>
+          <div class="tab-pane fade" id="cast" role="tabpanel"></div>
+          <div class="tab-pane fade" id="episodes" role="tabpanel"></div>
+        </div>
+      `;
+
+      const tabTriggers = document.querySelectorAll('[data-bs-toggle="tab"]');
+      tabTriggers.forEach(btn => {
+        btn.addEventListener('shown.bs.tab', (e) => {
+          const tab = e.target.dataset.bsTarget.replace('#', '');
+          loadTabContent(tab);
+          const url = new URL(window.location);
+          url.searchParams.set('tab', tab);
+          history.replaceState(null, '', url.toString());
+        });
+      });
+
+      document.getElementById(`${defaultTab}-tab`).click();
+    });
+
+    function loadTabContent(tab) {
+      if (tab === 'overview') {
+        document.getElementById('overview').innerHTML = `
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <img src="${showData.image?.original}" class="img-fluid rounded" alt="${showData.name}" />
+            </div>
+            <div class="col-md-8">
+              <p><strong>Language:</strong> ${showData.language}</p>
+              <p><strong>Genres:</strong> ${showData.genres.join(', ')}</p>
+              <p><strong>Premiered:</strong> ${showData.premiered}</p>
+              <p><strong>Rating:</strong> ${showData.rating.average ?? 'N/A'}</p>
+              <div>${showData.summary}</div>
+              <a href="${showData.officialSite ?? showData.url}" target="_blank" class="btn btn-primary mt-3">Visit Official Page</a>
+            </div>
+          </div>
+        `;
+      }
+
+      if (tab === 'cast' && cast.length === 0) {
+        fetch(`https://api.tvmaze.com/shows/${showId}/cast`)
+          .then(res => res.json())
+          .then(data => {
+            cast = data;
+            renderCastTab();
+          });
+      }
+
+      if (tab === 'episodes' && episodes.length === 0) {
+        fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
+          .then(res => res.json())
+          .then(data => {
+            episodes = data;
+            renderEpisodesTab();
+          });
+      }
+    }
+
+    function renderCastTab() {
+      document.getElementById('cast').innerHTML = `
+        <input type="text" id="castInput" class="form-control mb-3" placeholder="Search cast..." />
+        <div class="row row-cols-2 row-cols-md-4 g-3 mb-3" id="castGrid"></div>
+        <div class="text-center">
+          <button id="loadMoreCast" class="btn btn-outline-primary">Show More</button>
+        </div>
+      `;
+      renderCast('', true);
+      document.getElementById('castInput').addEventListener('input', (e) => {
+        castPage = 0;
+        renderCast(e.target.value.toLowerCase(), true);
+      });
+      document.getElementById('loadMoreCast').addEventListener('click', () => {
+        renderCast(document.getElementById('castInput').value.toLowerCase(), false);
+      });
+    }
+
+    function renderCast(filter = '', reset = false) {
+      const castGrid = document.getElementById('castGrid');
+      if (reset) {
+        castGrid.innerHTML = '';
+        castPage = 0;
+      }
+
+      const filtered = cast.filter(c => c.person.name.toLowerCase().includes(filter));
+      const start = castPage * CAST_PER_PAGE;
+      const end = start + CAST_PER_PAGE;
+      const pageCast = filtered.slice(start, end);
+
+      pageCast.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'col text-center';
+        div.innerHTML = `
+          <img src="${c.person.image?.medium || 'https://via.placeholder.com/80'}" class="cast-img mb-2" alt="${c.person.name}">
+          <div><strong>${c.person.name}</strong></div>
+          <small>as ${c.character.name}</small>
+        `;
+        castGrid.appendChild(div);
+      });
+
+      castPage++;
+      document.getElementById('loadMoreCast').style.display = end >= filtered.length ? 'none' : 'inline-block';
+    }
+
+    function renderEpisodesTab() {
+      const seasons = [...new Set(episodes.map(ep => ep.season))];
+      const counts = {};
+      episodes.forEach(ep => counts[ep.season] = (counts[ep.season] || 0) + 1);
+
+      document.getElementById('episodes').innerHTML = `
+        <select class="form-select w-auto mb-3" id="seasonFilter">
+          <option value="all">All Seasons (${episodes.length} eps)</option>
+          ${seasons.map(s => `<option value="${s}">Season ${s} (${counts[s]} eps)</option>`).join('')}
+        </select>
+        <div class="accordion" id="episodesAccordion"></div>
+      `;
+
+      document.getElementById('seasonFilter').addEventListener('change', (e) => {
+        renderEpisodeList(e.target.value);
+      });
+
+      renderEpisodeList('all');
+    }
+
+    function renderEpisodeList(season) {
+      const container = document.getElementById('episodesAccordion');
+      container.innerHTML = '';
+
+      const filtered = season === 'all'
+        ? episodes
+        : episodes.filter(ep => ep.season == season);
+
+      container.innerHTML = filtered.map((ep, index) => `
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading${index}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
+              S${ep.season}E${ep.number}: ${ep.name}
+            </button>
+          </h2>
+          <div id="collapse${index}" class="accordion-collapse collapse" data-bs-parent="#episodesAccordion">
+            <div class="accordion-body">
+              <p><strong>Airdate:</strong> ${ep.airdate}</p>
+              <p>${ep.summary ? ep.summary.replace(/<[^>]+>/g, '') : 'No description available.'}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="people.js"></script>
+</body>
+</html>

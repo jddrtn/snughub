@@ -24,9 +24,9 @@
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg custom-navbar navbar-dark bg-light">
         <div class="container-fluid">
-          <!-- Brand logo or name -->
+          <!-- Brand logo and name -->
           <a class="navbar-brand" href="index.html">
-            <img src="images/snug-logo.png" alt="Logo" width="120" height="120" style="margin-right: -30px;">
+            <img src="images/snug-logo.png" alt="Logo" width="60" height="60" style="margin-right: 0px;">
             Snug Hub
           </a>
       
@@ -49,57 +49,21 @@
             </ul>
           </div>
       
-          <!-- Search bar stays to the right -->
-          <form class="d-flex ms-auto search-form" role="search">
+            <!-- Search form -->
+            <form class="d-flex ms-auto search-form" role="search">
+            <!-- Input field for search query -->
             <input class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
+            <!-- Submit button for the search form -->
             <button class="btn custom-search-btn" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+            </form>
+          </div>
+          </nav>
       
 
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="hero-text">
-      <h1>The Warmth of Your Favorite Shows, All in One Place</h1> <!-- Hero heading -->
-      <p>Discover Where to Stream Your Go-To Comfort Shows</p>
-    </div>
-  </div>
 
-  <!-- Content Section -->
-  <div class="container content-section">
-    <h2 class="text-center mb-4">Trending Now</h2>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <!-- Example Cards -->
-      <div class="col">
-        <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 1" />
-          <div class="card-body">
-            <h5 class="card-title">Show Title 1</h5>
-            <p class="card-text">Description of the show goes here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 2" />
-          <div class="card-body">
-            <h5 class="card-title">Show Title 2</h5>
-            <p class="card-text">Description of the show goes here.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 3" />
-          <div class="card-body">
-            <h5 class="card-title">Show Title 3</h5>
-            <p class="card-text">Description of the movie goes here.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Content Section -->
+      <h1 class="text-center mb-4">Schedule</h1>
+      <div id="schedule"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>

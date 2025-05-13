@@ -54,4 +54,42 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   }
 
-  
+  // Function to fetch popular shows from the API
+async function fetchPopularShows() {
+  const response = await fetch('https://api.tvmaze.com/shows');
+  const shows = await response.json();
+
+  const carousel = document.getElementById('cardCarousel');
+  carousel.innerHTML = ''; // Clear current content
+
+  shows.slice(0, 10).forEach(show => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.cursor = 'pointer'; // Make it clear it's clickable
+
+    const image = show.image ? show.image.medium : 'https://via.placeholder.com/200x300';
+
+    card.innerHTML = `
+      <img src="${image}" class="card-img-top" alt="${show.name}" />
+      <div class="card-body text-center">
+      </div>
+    `;
+
+    // On click, go to show details page with show ID in query string
+    card.addEventListener('click', () => {
+      window.location.href = `show-info.html?id=${show.id}`;
+    });
+
+    carousel.appendChild(card);
+  });
+}
+
+
+  function scrollCarousel(direction) {
+    const carousel = document.getElementById('cardCarousel');
+    const scrollAmount = 300;
+    carousel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchPopularShows);
+
