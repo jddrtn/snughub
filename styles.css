@@ -130,9 +130,14 @@ body {
 }
 /* Wrapper for the entire carousel */
 .carousel-wrapper {
-  width: 100vw; /* Full viewport width */
-  overflow: hidden; /* Hide overflowing content */
-  position: relative; /* Position relative for arrow placement */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0; /* Remove horizontal padding */
 }
 
 /* Styling for the card carousel container */

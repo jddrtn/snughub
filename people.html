@@ -56,32 +56,37 @@
     </div>
 
     <!-- Filters -->
-    <div class="row g-2 mb-4 align-items-center">
-      <div class="col-md-4">
-        <select id="filterGender" class="form-select">
-          <option value="">All Genders</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-      </div>
-      <div class="col-md-4">
-        <select id="filterCountry" class="form-select">
-          <option value="">All Countries</option>
-          <!-- Populated dynamically -->
-        </select>
-      </div>
+<div class="row g-2 mb-1 align-items-center">
   <div class="col-md-4">
-  <select id="sortPeople" class="form-select">
-    <option value="">Sort by</option>
-    <option value="az">Name: A-Z</option>
-    <option value="za">Name: Z-A</option>
-  </select>
+    <select id="filterGender" class="form-select form-select-sm">
+      <option value="">All Genders</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <select id="filterCountry" class="form-select form-select-sm">
+      <option value="">All Countries</option>
+      <!-- Populated dynamically -->
+    </select>
+  </div>
+  <div class="col-md-4">
+    <select id="sortPeople" class="form-select form-select-sm">
+      <option value="">Sort by</option>
+      <option value="az">Name: A-Z</option>
+      <option value="za">Name: Z-A</option>
+    </select>
+  </div>
 </div>
+
 
     </div>
 
     <!-- People Grid -->
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="people"></div>
+    <div class="container px-3">
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="people"></div>
+</div>
+
 
 
 
