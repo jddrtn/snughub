@@ -85,7 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
       div.className = 'col text-center';
       div.innerHTML = `
         <a href="show-info.html?id=${show.id}" class="text-decoration-none text-dark">
-          <img src="${show.image?.medium || 'https://via.placeholder.com/80'}" class="cast-img mb-2" alt="${show.name}" />
+          <img src="${show.image?.medium}" class="card-img-square mb-2 alt="${show.name}">
+
           <div><strong>${show.name}</strong></div>
         </a>
       `;

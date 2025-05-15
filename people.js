@@ -4,10 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('searchPeople');
   const filterGender = document.getElementById('filterGender');
   const filterCountry = document.getElementById('filterCountry');
-  const filterPopular = document.getElementById('filterPopular');
+  const sortPeople = document.getElementById('sortPeople');
 
   const rowsToShow = 3;
-  const peoplePerPage = rowsToShow * 6; // 3 rows of 6 people
+  const peoplePerPage = rowsToShow * 6;
   let currentPage = 0;
   let currentData = [];
   let filterTerm = '';
@@ -26,15 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderPeople() {
     container.innerHTML = '';
 
-    const filtered = currentData.filter(person => {
+    let filtered = currentData.filter(person => {
       const nameMatch = person.name?.toLowerCase().includes(filterTerm.toLowerCase());
       const genderMatch = !filterGender.value || (person.gender && person.gender.toLowerCase() === filterGender.value.toLowerCase());
       const countryMatch = !filterCountry.value || (person.country && person.country.name === filterCountry.value);
       return nameMatch && genderMatch && countryMatch;
     });
 
-    if (filterPopular.checked) {
-      filtered.sort((a, b) => (b.updated || 0) - (a.updated || 0));
+    // Apply sorting
+    if (sortPeople.value === 'az') {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortPeople.value === 'za') {
+      filtered.sort((a, b) => b.name.localeCompare(a.name));
     }
 
     const totalPages = Math.ceil(filtered.length / peoplePerPage);
@@ -46,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div');
       div.className = 'col text-center';
       div.innerHTML = `
-        <a href="person.html?id=${person.id}" class="text-decoration-none text-dark">
-          <img src="${person.image?.medium || 'https://via.placeholder.com/80'}" class="cast-img mb-2" alt="${person.name}">
+        <a href="person.html?id=${person.id}" class="text-decoration-none text-dark d-block h-100">
+          <img src="${person.image?.medium || 'https://via.placeholder.com/100'}" class="card-img-square mb-2" alt="${person.name}">
           <div><strong>${person.name}</strong></div>
         </a>
       `;
@@ -57,62 +60,58 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPagination(filtered.length, totalPages);
   }
 
-function renderPagination(totalResults, totalPages) {
-  paginationContainer.innerHTML = '';
-  const nav = document.createElement('nav');
-  const ul = document.createElement('ul');
-  ul.className = 'pagination justify-content-center flex-wrap';
+  function renderPagination(totalResults, totalPages) {
+    paginationContainer.innerHTML = '';
+    const nav = document.createElement('nav');
+    const ul = document.createElement('ul');
+    ul.className = 'pagination justify-content-center flex-wrap';
 
-  const maxVisiblePages = 5;
-  const startPage = Math.floor(currentPage / maxVisiblePages) * maxVisiblePages;
-  const endPage = Math.min(startPage + maxVisiblePages, totalPages);
+    const maxVisiblePages = 5;
+    const startPage = Math.floor(currentPage / maxVisiblePages) * maxVisiblePages;
+    const endPage = Math.min(startPage + maxVisiblePages, totalPages);
 
-  // « Previous 5 block
-  if (startPage > 0) {
-    const li = document.createElement('li');
-    li.className = 'page-item';
-    li.innerHTML = `<button class="page-link">&laquo;</button>`;
-    li.addEventListener('click', () => {
-      currentPage = startPage - 1;
-      renderPeople();
-    });
-    ul.appendChild(li);
+    if (startPage > 0) {
+      const li = document.createElement('li');
+      li.className = 'page-item';
+      li.innerHTML = `<button class="page-link">&laquo;</button>`;
+      li.addEventListener('click', () => {
+        currentPage = startPage - 1;
+        renderPeople();
+      });
+      ul.appendChild(li);
+    }
+
+    for (let i = startPage; i < endPage; i++) {
+      const li = document.createElement('li');
+      li.className = 'page-item' + (i === currentPage ? ' active' : '');
+
+      const btn = document.createElement('button');
+      btn.className = 'page-link';
+      btn.textContent = i + 1;
+
+      btn.addEventListener('click', () => {
+        currentPage = i;
+        renderPeople();
+      });
+
+      li.appendChild(btn);
+      ul.appendChild(li);
+    }
+
+    if (endPage < totalPages) {
+      const li = document.createElement('li');
+      li.className = 'page-item';
+      li.innerHTML = `<button class="page-link">&raquo;</button>`;
+      li.addEventListener('click', () => {
+        currentPage = endPage;
+        renderPeople();
+      });
+      ul.appendChild(li);
+    }
+
+    nav.appendChild(ul);
+    paginationContainer.appendChild(nav);
   }
-
-  // Page numbers
-  for (let i = startPage; i < endPage; i++) {
-    const li = document.createElement('li');
-    li.className = 'page-item' + (i === currentPage ? ' active' : '');
-
-    const btn = document.createElement('button');
-    btn.className = 'page-link';
-    btn.textContent = i + 1;
-
-    btn.addEventListener('click', () => {
-      currentPage = i;
-      renderPeople();
-    });
-
-    li.appendChild(btn);
-    ul.appendChild(li);
-  }
-
-  // » Next 5 block
-  if (endPage < totalPages) {
-    const li = document.createElement('li');
-    li.className = 'page-item';
-    li.innerHTML = `<button class="page-link">&raquo;</button>`;
-    li.addEventListener('click', () => {
-      currentPage = endPage;
-      renderPeople();
-    });
-    ul.appendChild(li);
-  }
-
-  nav.appendChild(ul);
-  paginationContainer.appendChild(nav);
-}
-
 
   function populateFilterOptions() {
     const countries = Array.from(new Set(currentData.map(p => p.country?.name).filter(Boolean))).sort();
@@ -136,7 +135,7 @@ function renderPagination(totalResults, totalPages) {
     renderPeople();
   });
 
-  filterPopular.addEventListener('change', () => {
+  sortPeople.addEventListener('change', () => {
     currentPage = 0;
     renderPeople();
   });

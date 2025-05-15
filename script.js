@@ -19,6 +19,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   });
 
+ document.addEventListener('DOMContentLoaded', () => {
+    const heroText = document.querySelector('.hero-text');
+    if (heroText) {
+      // Slight delay helps make the fade-in smoother
+      setTimeout(() => {
+        heroText.classList.add('fade-in');
+      }, 200);
+    }
+  });
+
   // Function to scroll the carousel by a specific direction
   function scrollCarousel(direction) {
   const carousel = document.getElementById('cardCarousel'); // Get the carousel element

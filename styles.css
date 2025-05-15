@@ -99,6 +99,18 @@ body {
   background-color: #785cbe;
 }
 
+.hero-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.hero-text.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 
 /* Styling for content sections */
 .content-section {
@@ -224,12 +236,7 @@ body {
 
 /* People page */
 
-/* Container for the people section */
-#people {
-  display: flex; /* Use flexbox for layout */
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
-  gap: 20px; /* Add spacing between items */
-}
+
 
 /* Styling for individual person cards */
 .person {
@@ -309,10 +316,12 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#searchPeople {
-  max-width: 400px;
+
+   #searchPeople {
+  max-width: 600px; 
   margin: 0 auto;
 }
+
 
 /* Pagination container */
 .pagination {
@@ -370,3 +379,26 @@ body {
   opacity: 0.4;
   cursor: not-allowed;
 }
+   /* Show page */
+
+   #searchShows {
+  max-width: 600px; /* Match your people search bar width */
+  margin: 0 auto;
+}
+
+/* Styling for the show images */
+
+.card-img-square {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-square:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+

@@ -70,16 +70,20 @@
           <!-- Populated dynamically -->
         </select>
       </div>
-      <div class="col-md-4">
-        <div class="form-check mt-2">
-          <input type="checkbox" class="form-check-input" id="filterPopular">
-          <label class="form-check-label" for="filterPopular">Most Recently Updated</label>
-        </div>
-      </div>
+  <div class="col-md-4">
+  <select id="sortPeople" class="form-select">
+    <option value="">Sort by</option>
+    <option value="az">Name: A-Z</option>
+    <option value="za">Name: Z-A</option>
+  </select>
+</div>
+
     </div>
 
     <!-- People Grid -->
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="people"></div>
+
+
 
     <!-- Pagination -->
     <div id="pagination" class="mt-4 text-center"></div>
@@ -92,7 +96,7 @@
       <div class="col-md-6 mb-4">
         <h5>About Snug Hub</h5>
         <p class="small">
-          Snug Hub helps you find your favorite comfort TV shows and where to stream them.
+          Snug Hub helps you find your favourite comfort TV shows and where to stream them.
         </p>
       </div>
 
