@@ -33,7 +33,7 @@
   padding-top: 0%; /* Remove top padding */
   padding-bottom: 0%; /* Remove bottom padding */
   min-height: 0px; /* Optional: control overall height of the navbar */
-  background-color: #FFE9F0; 
+  background-color: #ffffff; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
@@ -62,14 +62,14 @@ body {
 
 /* Styling for the hero section */
 .hero {
-  background: linear-gradient(to bottom, #ffe3ec, #ffffff);; /* Primary background color */
+  background: linear-gradient(to bottom, #ffffff, #ffffff);; /* Primary background color */
   background-size: cover; /* Ensure background covers the section */
   height: 60vh; /* Set height to 60% of the viewport */
   display: flex; /* Use flexbox for layout */
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
   text-align: center; /* Center text alignment */
-  color: #000000; /* text color */
+  color: #000000; /* text colour */
 }
 
 /* Styling for the main heading in the hero section */
@@ -218,9 +218,8 @@ body {
 }
 
 .footer a:hover {
-  color: #000000;
+  color: #785cbe;
 }
-
 
 
 /* People page */
@@ -284,4 +283,90 @@ body {
 .btn-primary:hover {
   background-color: #FFE9F0;;
   border-color: #FFE9F0;;
+}
+
+#loadMoreCast {
+  font-size: 1rem; /* Set font size for the button text */
+  padding: 0.5rem 1rem; /* Add padding for the button */
+  background-color: #52359A; /* Set background color */
+  color: #ffffff; /* Set text color */
+  border-radius: 8px; /* Round the corners of the button */
+}
+
+#loadMoreCast:hover {
+  background-color: #785cbe; /* Change background color on hover */
+  color: #ffffff; /* Change text color on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Person page */
+
+.cast-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#searchPeople {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Pagination container */
+.pagination {
+  margin-top: 1rem;
+}
+
+/* Regular pagination buttons */
+.page-item .page-link {
+  background-color: #f8f9fa; /* light background */
+  color: #333; /* dark text */
+  border: 1px solid #ddd;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover state */
+.page-item .page-link:hover {
+  background-color: #e2e6ea;
+  color: #000;
+}
+
+/* Active (current) page */
+.page-item.active .page-link {
+  background-color: #7B6EF6; /* your custom highlight color */
+  color: white;
+  border-color: #7B6EF6;
+}
+
+/* Disabled arrows (optional) */
+.page-item.disabled .page-link {
+  background-color: #e9ecef;
+  color: #999;
+  border-color: #dee2e6;
+}
+
+/* Schedule page */
+
+.schedule-nav-btn {
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 6px 12px;
+  border: 2px solid #6c757d;
+  color: #6c757d;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.schedule-nav-btn:hover:not(:disabled) {
+  background-color: #f8f9fa;
+  border-color: #343a40;
+  color: #343a40;
+  cursor: pointer;
+}
+
+.schedule-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

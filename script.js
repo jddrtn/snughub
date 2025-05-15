@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const scrollAmount = 300; // Amount to scroll with each arrow click
   carousel.scrollBy({
     left: scrollAmount * direction, // Scroll horizontally based on direction
-    behavior: 'smooth' // Smooth scroll effect
+    behavior: 'smooth' // smooth scroll effect
   });
   }
 
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const carousel = document.getElementById('cardCarousel');
   const cards = carousel.querySelectorAll('.card');
   const cardWidth = cards[0].offsetWidth + 16; // Calculate the width of a card including the gap
+  const cardCount = cards.length; // Total number of cards
   let currentIndex = 0; // Track the current index of the visible card
 
   // Function to scroll the carousel to a specific card
@@ -85,11 +86,15 @@ async function fetchPopularShows() {
 }
 
 
+  // Function to scroll the carousel by a specific direction
   function scrollCarousel(direction) {
-    const carousel = document.getElementById('cardCarousel');
-    const scrollAmount = 300;
-    carousel.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+    const carousel = document.getElementById('cardCarousel'); // Get the carousel element
+    const scrollAmount = 300; // Amount to scroll with each arrow click
+    carousel.scrollBy({ 
+      left: scrollAmount * direction, // Scroll horizontally based on direction
+      behavior: 'smooth' // Smooth scroll effect
+    });
   }
 
+  // Fetch popular shows from the API when the DOM is fully loaded
   document.addEventListener('DOMContentLoaded', fetchPopularShows);
-
