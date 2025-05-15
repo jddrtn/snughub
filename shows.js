@@ -1,4 +1,6 @@
+// Wait for the DOM to be fully loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
+  // Get references to DOM elements
   const showsContainer = document.getElementById('shows');
   const paginationContainer = document.getElementById('pagination');
   const searchInput = document.getElementById('searchShows');
@@ -8,10 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterType = document.getElementById('filterType');
   const sortBy = document.getElementById('sortBy');
 
+  // Number of shows to display per page
   const SHOWS_PER_PAGE = 18;
-  let allShows = [];
-  let currentPage = 0;
+  let allShows = []; // Array to hold all fetched shows
+  let currentPage = 0; // Current page index
 
+  // Fetch shows from the TVMaze API (up to 10 pages)
   async function fetchShows() {
     let page = 0;
     let results = [];
@@ -24,10 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
       page++;
     }
     allShows = results;
-    populateFilters();
-    renderShows();
+    populateFilters(); // Populate filter dropdowns
+    renderShows();     // Render the initial list of shows
   }
 
+  // Populate filter dropdowns with unique values from allShows
   function populateFilters() {
     const genres = new Set();
     const languages = new Set();
@@ -41,15 +46,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (show.type) types.add(show.type);
     });
 
+    // Add options to each filter dropdown
     filterGenre.innerHTML += [...genres].sort().map(g => `<option value="${g}">${g}</option>`).join('');
     filterLanguage.innerHTML += [...languages].sort().map(l => `<option value="${l}">${l}</option>`).join('');
     filterCountry.innerHTML += [...countries].sort().map(c => `<option value="${c}">${c}</option>`).join('');
     filterType.innerHTML += [...types].sort().map(t => `<option value="${t}">${t}</option>`).join('');
   }
 
+  // Render the shows based on filters, search, sorting, and pagination
   function renderShows() {
     showsContainer.innerHTML = '';
 
+    // Filter shows based on user input and selected filters
     let filtered = allShows.filter(show => {
       return (
         (!searchInput.value || show.name.toLowerCase().includes(searchInput.value.toLowerCase())) &&
@@ -60,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     });
 
+    // Sort the filtered shows based on selected sort option
     switch (sortBy.value) {
       case 'az':
         filtered.sort((a, b) => a.name.localeCompare(b.name));
@@ -75,37 +84,41 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
     }
 
+    // Pagination logic: calculate which shows to display on the current page
     const totalPages = Math.ceil(filtered.length / SHOWS_PER_PAGE);
     const start = currentPage * SHOWS_PER_PAGE;
     const end = start + SHOWS_PER_PAGE;
     const pageShows = filtered.slice(start, end);
 
+    // Render each show as a card
     pageShows.forEach(show => {
       const div = document.createElement('div');
       div.className = 'col text-center';
       div.innerHTML = `
         <a href="show-info.html?id=${show.id}" class="text-decoration-none text-dark">
           <img src="${show.image?.medium}" class="card-img-square mb-2 alt="${show.name}">
-
           <div><strong>${show.name}</strong></div>
         </a>
       `;
       showsContainer.appendChild(div);
     });
 
+    // Render pagination controls
     renderPagination(filtered.length, totalPages);
   }
 
+  // Render pagination controls (page numbers and navigation)
   function renderPagination(totalItems, totalPages) {
     paginationContainer.innerHTML = '';
     const nav = document.createElement('nav');
     const ul = document.createElement('ul');
     ul.className = 'pagination justify-content-center flex-wrap';
 
-    const maxVisiblePages = 5;
+    const maxVisiblePages = 5; // Max number of page buttons to show at once
     const startPage = Math.floor(currentPage / maxVisiblePages) * maxVisiblePages;
     const endPage = Math.min(startPage + maxVisiblePages, totalPages);
 
+    // Add "previous" button if not on the first set of pages
     if (startPage > 0) {
       const li = document.createElement('li');
       li.className = 'page-item';
@@ -117,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ul.appendChild(li);
     }
 
+    // Add page number buttons
     for (let i = startPage; i < endPage; i++) {
       const li = document.createElement('li');
       li.className = 'page-item' + (i === currentPage ? ' active' : '');
@@ -133,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ul.appendChild(li);
     }
 
+    // Add "next" button if there are more pages
     if (endPage < totalPages) {
       const li = document.createElement('li');
       li.className = 'page-item';
@@ -148,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     paginationContainer.appendChild(nav);
   }
 
+  // Add event listeners to all filter and sort controls
   [searchInput, filterGenre, filterLanguage, filterCountry, filterType, sortBy].forEach(el => {
     el.addEventListener('input', () => {
       currentPage = 0;
@@ -159,5 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Initial fetch of shows when the page loads
   fetchShows();
 });

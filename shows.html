@@ -4,22 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Snug Hub - Shows</title>
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid">
+      <!-- Brand Logo and Name -->
       <a class="navbar-brand" href="index.html">
         <img src="images/snug-logo.png" alt="Logo" width="60" height="60">
         Snug Hub
       </a>
+      <!-- Navbar Toggler for Mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -28,6 +35,7 @@
           <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
         </ul>
       </div>
+      <!-- Navbar Search Form -->
       <form class="d-flex ms-auto search-form" role="search">
         <input class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
         <button class="btn custom-search-btn" type="submit">Search</button>
@@ -36,87 +44,95 @@
   </nav>
 
   <div class="container py-4">
+    <!-- Page Title -->
     <h1 class="text-center mb-4">TV Shows</h1>
 
-  <!-- Search -->
-<div class="mb-3">
-  <input type="text" id="searchShows" class="form-control" placeholder="Search shows...">
-</div>
+    <!-- Search Shows Input -->
+    <div class="mb-3">
+      <input type="text" id="searchShows" class="form-control" placeholder="Search shows...">
+    </div>
 
-<!-- Filters + Sort in One Row -->
-<div class="row g-2 mb-4 align-items-center">
-  <div class="col-md-2">
-    <select id="filterGenre" class="form-select form-select-sm">
-      <option value="">All Genres</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <select id="filterLanguage" class="form-select form-select-sm">
-      <option value="">All Languages</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <select id="filterCountry" class="form-select form-select-sm">
-      <option value="">All Countries</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <select id="filterType" class="form-select form-select-sm">
-      <option value="">All Types</option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <select id="sortBy" class="form-select form-select-sm">
-      <option value="">Sort by...</option>
-      <option value="popularity">Most Popular</option>
-      <option value="az">A - Z</option>
-      <option value="za">Z - A</option>
-      <option value="recent">Recently Added</option>
-    </select>
-  </div>
-</div>
-
+    <!-- Filters and Sort Row -->
+    <div class="row g-2 mb-4 align-items-center">
+      <!-- Genre Filter -->
+      <div class="col-md-2">
+        <select id="filterGenre" class="form-select form-select-sm">
+          <option value="">All Genres</option>
+        </select>
+      </div>
+      <!-- Language Filter -->
+      <div class="col-md-2">
+        <select id="filterLanguage" class="form-select form-select-sm">
+          <option value="">All Languages</option>
+        </select>
+      </div>
+      <!-- Country Filter -->
+      <div class="col-md-2">
+        <select id="filterCountry" class="form-select form-select-sm">
+          <option value="">All Countries</option>
+        </select>
+      </div>
+      <!-- Type Filter -->
+      <div class="col-md-2">
+        <select id="filterType" class="form-select form-select-sm">
+          <option value="">All Types</option>
+        </select>
+      </div>
+      <!-- Sort Dropdown -->
+      <div class="col-md-4">
+        <select id="sortBy" class="form-select form-select-sm">
+          <option value="">Sort by...</option>
+          <option value="popularity">Most Popular</option>
+          <option value="az">A - Z</option>
+          <option value="za">Z - A</option>
+          <option value="recent">Recently Added</option>
+        </select>
+      </div>
+    </div>
 
     <!-- Show Grid -->
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="shows"></div>
 
-    <!-- Pagination -->
+    <!-- Pagination Controls -->
     <div id="pagination" class="mt-4 text-center"></div>
   </div>
+
   <!-- Footer -->
-<footer class="footer pt-5 pb-4 mt-5 border-top">
-  <div class="container-fluid px-4">
-    <div class="row">
-      <!-- Column 1: About -->
-      <div class="col-md-6 mb-4">
-        <h5>About Snug Hub</h5>
-        <p class="small">
-          Snug Hub helps you find your favourite comfort TV shows and where to stream them.
-        </p>
+  <footer class="footer pt-5 pb-4 mt-5 border-top">
+    <div class="container-fluid px-4">
+      <div class="row">
+        <!-- Footer Column 1: About -->
+        <div class="col-md-6 mb-4">
+          <h5>About Snug Hub</h5>
+          <p class="small">
+            Snug Hub helps you find your favourite comfort TV shows and where to stream them.
+          </p>
+        </div>
+
+        <!-- Footer Column 2: Quick Links -->
+        <div class="col-md-6 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="hover-link">Home</a></li>
+            <li><a href="shows.html" class="hover-link">Shows</a></li>
+            <li><a href="people.html" class="hover-link">People</a></li>
+            <li><a href="schedule.html" class="hover-link">Schedule</a></li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Column 2: Links -->
-      <div class="col-md-6 mb-4">
-        <h5>Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="index.html" class="hover-link">Home</a></li>
-          <li><a href="shows.html" class="hover-link">Shows</a></li>
-          <li><a href="people.html" class="hover-link">People</a></li>
-          <li><a href="schedule.html" class="hover-link">Schedule</a></li>
-        </ul>
-        </ul>
+      <hr>
+
+      <!-- Copyright -->
+      <div class="text-center small mt-3 pb-2">
+        © 2025 Snug Hub.
       </div>
     </div>
+  </footer>
 
-    <hr>
-
-    <div class="text-center small mt-3 pb-2">
-      © 2025 Snug Hub.
-    </div>
-  </div>
-</footer>
-
+  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS for Shows Page -->
   <script src="shows.js"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
-/* Index page */
+/* =========================
+  Index page styles
+  ========================= */
 
 /* Styling for the navigation links in the navbar */
 .navbar-nav .nav-link {
@@ -60,9 +62,13 @@ body {
   padding: 0; /* Remove default padding */
 }
 
+/* =========================
+  Hero section styles
+  ========================= */
+
 /* Styling for the hero section */
 .hero {
-  background: linear-gradient(to bottom, #ffffff, #ffffff);; /* Primary background color */
+  background: linear-gradient(to bottom, #ffffff, #ffffff); /* Primary background color */
   background-size: cover; /* Ensure background covers the section */
   height: 60vh; /* Set height to 60% of the viewport */
   display: flex; /* Use flexbox for layout */
@@ -83,6 +89,7 @@ body {
   font-size: 1.25rem; /* Medium font size for the paragraph */
 }
 
+/* Styling for the hero section button */
 .hero-button {
   display: inline-block;
   padding: 1rem 2rem;
@@ -95,10 +102,12 @@ body {
   transition: background-color 0.3s ease;
 }
 
+/* Hero button hover effect */
 .hero-button:hover {
   background-color: #785cbe;
 }
 
+/* Hero text animation (fade-in) */
 .hero-text {
   opacity: 0;
   transform: translateY(20px);
@@ -110,12 +119,18 @@ body {
   transform: translateY(0);
 }
 
-
+/* =========================
+  Content section styles
+  ========================= */
 
 /* Styling for content sections */
 .content-section {
   padding: 2rem 0; /* Add vertical padding */
 }
+
+/* =========================
+  Card carousel styles
+  ========================= */
 
 /* Styling for images in cards */
 .card-img-top {
@@ -128,6 +143,7 @@ body {
   width: 600px; /* Set width for the search input */
   max-width: 100%; /* Ensure it doesn't exceed the container width */
 }
+
 /* Wrapper for the entire carousel */
 .carousel-wrapper {
   display: flex;
@@ -154,24 +170,29 @@ body {
   flex: 0 0 auto; /* Prevent cards from shrinking or growing */
 }
 
+/* Smaller card width for carousel */
 .card-carousel .card {
   width: 160px; /* smaller than the default 200-300px*/
 }
 
+/* Remove padding from card body in carousel */
 .card-carousel .card-body {
   padding: 0;
 }
 
+/* Card title styling in carousel */
 .card-carousel .card-title {
   font-size: 1rem;
   margin-bottom: 0.5rem;
 }
 
+/* Card text styling in carousel */
 .card-carousel .card-text {
   font-size: 0.8rem;
   line-height: 1.2;
 }
 
+/* Card image hover effect */
 .card:hover .card-img-top {
   transform: scale(1.03);
   cursor: pointer;
@@ -201,6 +222,10 @@ body {
   right: 0; /* Position arrow on the right */
 }
 
+/* =========================
+  Footer styles
+  ========================= */
+
 .footer {
   background-color: #ffffff;
   color: #333;
@@ -211,7 +236,6 @@ body {
   width: 100%;
   padding: 0 2rem;
 }
-
 
 .footer-columns {
   display: flex;
@@ -238,10 +262,9 @@ body {
   color: #785cbe;
 }
 
-
-/* People page */
-
-
+/* =========================
+  People page styles
+  ========================= */
 
 /* Styling for individual person cards */
 .person {
@@ -257,8 +280,11 @@ body {
   height: auto; /* Maintain the aspect ratio of the image */
 }
 
-/* Show info page */
+/* =========================
+  Show info page styles
+  ========================= */
 
+/* Cast image styling */
 .cast-img {
   width: 80px;
   height: 80px;
@@ -267,18 +293,24 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Tab navigation */
+/* =========================
+  Tab navigation styles
+  ========================= */
+
+/* Tab navigation links */
 .nav-tabs .nav-link {
   color: #000000;
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
 
+/* Tab navigation hover state */
 .nav-tabs .nav-link:hover {
   background-color:#FFE9F0;
   color: #000000;
 }
 
+/* Tab navigation active state */
 .nav-tabs .nav-link.active {
   background-color: #FFE9F0;
   color: #000000;
@@ -286,16 +318,23 @@ body {
   border-color: #d0bfff #d0bfff #fff;
 }
 
-/* Visit Official Page button */
+/* =========================
+  Visit Official Page button styles
+  ========================= */
+
 .btn-primary {
-  background-color: #52359A;;
-  border-color: #52359A;;
+  background-color: #52359A;
+  border-color: #52359A;
 }
 
 .btn-primary:hover {
-  background-color: #FFE9F0;;
-  border-color: #FFE9F0;;
+  background-color: #FFE9F0;
+  border-color: #FFE9F0;
 }
+
+/* =========================
+  Load More Cast button styles
+  ========================= */
 
 #loadMoreCast {
   font-size: 1rem; /* Set font size for the button text */
@@ -311,8 +350,11 @@ body {
   cursor: pointer; /* Change cursor to pointer on hover */
 }
 
-/* Person page */
+/* =========================
+  Person page styles
+  ========================= */
 
+/* Cast image styling (duplicate for person page) */
 .cast-img {
   width: 80px;
   height: 80px;
@@ -321,12 +363,15 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-
-   #searchPeople {
+/* Search bar container for people page */
+#searchPeople {
   max-width: 600px; 
   margin: 0 auto;
 }
 
+/* =========================
+  Pagination styles
+  ========================= */
 
 /* Pagination container */
 .pagination {
@@ -361,8 +406,11 @@ body {
   border-color: #dee2e6;
 }
 
-/* Schedule page */
+/* =========================
+  Schedule page styles
+  ========================= */
 
+/* Schedule navigation button */
 .schedule-nav-btn {
   font-weight: 700;
   font-size: 1.2rem;
@@ -373,6 +421,7 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
+/* Schedule navigation button hover */
 .schedule-nav-btn:hover:not(:disabled) {
   background-color: #f8f9fa;
   border-color: #343a40;
@@ -380,19 +429,23 @@ body {
   cursor: pointer;
 }
 
+/* Disabled schedule navigation button */
 .schedule-nav-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
-   /* Show page */
 
-   #searchShows {
+/* =========================
+  Show page styles
+  ========================= */
+
+/* Search bar container for shows page */
+#searchShows {
   max-width: 600px; /* Match your people search bar width */
   margin: 0 auto;
 }
 
 /* Styling for the show images */
-
 .card-img-square {
   width: 100%;
   height: 280px;
@@ -402,8 +455,8 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Show image hover effect */
 .card-img-square:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-

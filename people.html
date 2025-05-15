@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Metadata and external resources -->
+  <!-- ===== Metadata and External Resources ===== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Snug Hub</title>
 
-  <!-- Bootstrap CSS for styling -->
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
   <!-- Google Fonts -->
@@ -17,28 +17,37 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <!-- Navigation Bar -->
+  <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid">
+      <!-- Brand Logo and Name -->
       <a class="navbar-brand" href="index.html">
         <img src="images/snug-logo.png" alt="Logo" width="60" height="60">
         Snug Hub
       </a>
+      <!-- Navbar Toggler for Mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li>
-          <li class="nav-item"><a class="nav-link active" href="people.html">People</a></li>
-          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shows.html">Shows</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="people.html">People</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="schedule.html">Schedule</a>
+          </li>
         </ul>
       </div>
-
+      <!-- Search Form -->
       <form class="d-flex ms-auto search-form" role="search">
         <input class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
         <button class="btn custom-search-btn" type="submit">Search</button>
@@ -46,88 +55,86 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
+  <!-- ===== Main Page Content ===== -->
   <div class="container py-4">
+    <!-- Page Title -->
     <h1 class="text-center mb-4">People</h1>
 
-    <!-- Search -->
+    <!-- Search Input -->
     <div class="mb-3">
       <input type="text" id="searchPeople" class="form-control" placeholder="Search people..." />
     </div>
 
-    <!-- Filters -->
-<div class="row g-2 mb-1 align-items-center">
-  <div class="col-md-4">
-    <select id="filterGender" class="form-select form-select-sm">
-      <option value="">All Genders</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select>
-  </div>
-  <div class="col-md-4">
-    <select id="filterCountry" class="form-select form-select-sm">
-      <option value="">All Countries</option>
-      <!-- Populated dynamically -->
-    </select>
-  </div>
-  <div class="col-md-4">
-    <select id="sortPeople" class="form-select form-select-sm">
-      <option value="">Sort by</option>
-      <option value="az">Name: A-Z</option>
-      <option value="za">Name: Z-A</option>
-    </select>
-  </div>
-</div>
-
-
+    <!-- Filters and Sorting -->
+    <div class="row g-2 mb-1 align-items-center">
+      <!-- Gender Filter -->
+      <div class="col-md-4">
+        <select id="filterGender" class="form-select form-select-sm">
+          <option value="">All Genders</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+      <!-- Country Filter -->
+      <div class="col-md-4">
+        <select id="filterCountry" class="form-select form-select-sm">
+          <option value="">All Countries</option>
+          <!-- Populated dynamically -->
+        </select>
+      </div>
+      <!-- Sort Options -->
+      <div class="col-md-4">
+        <select id="sortPeople" class="form-select form-select-sm">
+          <option value="">Sort by</option>
+          <option value="az">Name: A-Z</option>
+          <option value="za">Name: Z-A</option>
+        </select>
+      </div>
     </div>
 
     <!-- People Grid -->
     <div class="container px-3">
-  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="people"></div>
-</div>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="people">
+        <!-- People cards will be dynamically inserted here -->
+      </div>
+    </div>
 
-
-
-
-    <!-- Pagination -->
+    <!-- Pagination Controls -->
     <div id="pagination" class="mt-4 text-center"></div>
   </div>
-<!-- Footer -->
-<footer class="footer pt-5 pb-4 mt-5 border-top">
-  <div class="container-fluid px-4">
-    <div class="row">
-      <!-- Column 1: About -->
-      <div class="col-md-6 mb-4">
-        <h5>About Snug Hub</h5>
-        <p class="small">
-          Snug Hub helps you find your favourite comfort TV shows and where to stream them.
-        </p>
-      </div>
 
-      <!-- Column 2: Links -->
-      <div class="col-md-6 mb-4">
-        <h5>Quick Links</h5>
-        <ul class="list-unstyled">
-          <li><a href="index.html" class="hover-link">Home</a></li>
-          <li><a href="shows.html" class="hover-link">Shows</a></li>
-          <li><a href="people.html" class="hover-link">People</a></li>
-          <li><a href="schedule.html" class="hover-link">Schedule</a></li>
-        </ul>
-        </ul>
+  <!-- ===== Footer ===== -->
+  <footer class="footer pt-5 pb-4 mt-5 border-top">
+    <div class="container-fluid px-4">
+      <div class="row">
+        <!-- About Section -->
+        <div class="col-md-6 mb-4">
+          <h5>About Snug Hub</h5>
+          <p class="small">
+            Snug Hub helps you find your favourite comfort TV shows and where to stream them.
+          </p>
+        </div>
+        <!-- Quick Links -->
+        <div class="col-md-6 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="hover-link">Home</a></li>
+            <li><a href="shows.html" class="hover-link">Shows</a></li>
+            <li><a href="people.html" class="hover-link">People</a></li>
+            <li><a href="schedule.html" class="hover-link">Schedule</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+      <div class="text-center small mt-3 pb-2">
+        © 2025 Snug Hub.
       </div>
     </div>
+  </footer>
 
-    <hr>
-
-    <div class="text-center small mt-3 pb-2">
-      © 2025 Snug Hub.
-    </div>
-  </div>
-</footer>
-  <!-- Bootstrap JS -->
+  <!-- ===== Scripts ===== -->
+  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
   <!-- Custom JS -->
   <script src="people.js"></script>
 </body>
