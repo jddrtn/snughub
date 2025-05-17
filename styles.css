@@ -4,7 +4,7 @@
 
 /* Styling for the navigation links in the navbar */
 .navbar-nav .nav-link {
-  color: #000000; /* Default color for nav links */
+  color: #ffffff; /* Default color for nav links */
 }
 
 /* Styling for navigation links when hovered */
@@ -14,20 +14,20 @@
 
 /* Styling for the active navigation link */
 .navbar-nav .nav-link.active {
-  color: #000000; /* Primary color for active link */
+  color: #ffffff; /* Primary color for active link */
   font-weight: bold; /* Bold font for active link */
 }
 
 /* Styling for the website title in the navbar */
 .navbar-brand {
   font-family: 'Nunito', sans-serif; /* Font family for the brand */
-  color: #000000; /* Override color for the brand */
+  color: #ffffff; /* Override color for the brand */
   font-weight: 750; /* Bold font weight for the brand */
 }
 
 /* Styling for the navbar brand when hovered */
 .navbar-brand:hover {
-  color: black !important; /* Ensure the hover color is black */
+  color: #ffffff !important; /* Ensure the hover color is white */
 }
 
 /* Custom styling for the navbar */
@@ -35,7 +35,7 @@
   padding-top: 0%; /* Remove top padding */
   padding-bottom: 0%; /* Remove bottom padding */
   min-height: 0px; /* Optional: control overall height of the navbar */
-  background-color: #ffffff; 
+  background-color: #000000; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
 }
 
@@ -56,8 +56,8 @@
 
 /* Global body styling */
 body {
-  font-family: 'Roboto', sans-serif; /* Font family for the body */
-  background-color: #ffffff; /* Light gray background color */
+  font-family: 'Nunito', sans-serif; /* Font family for the body */
+  background-color: #191919; /* Light gray background color */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
 }
@@ -68,14 +68,14 @@ body {
 
 /* Styling for the hero section */
 .hero {
-  background: linear-gradient(to bottom, #ffffff, #ffffff); /* Primary background color */
+  background-color: #191919; /* Primary background color */
   background-size: cover; /* Ensure background covers the section */
   height: 60vh; /* Set height to 60% of the viewport */
   display: flex; /* Use flexbox for layout */
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
   text-align: center; /* Center text alignment */
-  color: #000000; /* text colour */
+  color: #ffffff; /* text colour */
 }
 
 /* Styling for the main heading in the hero section */
@@ -126,6 +126,7 @@ body {
 /* Styling for content sections */
 .content-section {
   padding: 2rem 0; /* Add vertical padding */
+  color: #ffffff; /* Text color */
 }
 
 /* =========================
@@ -173,6 +174,7 @@ body {
 /* Smaller card width for carousel */
 .card-carousel .card {
   width: 160px; /* smaller than the default 200-300px*/
+  border:#000000;
 }
 
 /* Remove padding from card body in carousel */
@@ -203,7 +205,7 @@ body {
   position: absolute; /* Position arrows relative to the carousel */
   top: 50%; /* Center arrows vertically */
   transform: translateY(-50%); /* Adjust for perfect vertical centering */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  background-color: rgba(100, 100, 100, 0.5); /* Semi-transparent black background */
   color: white; /* White arrow color */
   border: none; /* Remove default border */
   font-size: 2rem; /* Large font size for arrows */
@@ -227,8 +229,8 @@ body {
   ========================= */
 
 .footer {
-  background-color: #ffffff;
-  color: #333;
+  background-color: #191919;
+  color: #ffffff;
   width: 100%;
 }
 
@@ -250,11 +252,11 @@ body {
 
 .footer h5 {
   font-weight: 600;
-  color: #000000;
+  color: #ffffff;
 }
 
 .footer a {
-  color: #333;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -369,6 +371,10 @@ body {
   margin: 0 auto;
 }
 
+#people-heading {
+  color: #ffffff; /* White color for the heading */
+}
+
 /* =========================
   Pagination styles
   ========================= */
@@ -459,4 +465,39 @@ body {
 .card-img-square:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#tv-shows-heading {
+  color: #ffffff; /* White color for the heading */
+}
+
+/* =========================
+  Schedule page styles
+  ========================= */
+
+  #schedule-heading {
+  color: #ffffff; /* White color for the heading */
+}
+
+/* Custom Schedule Table Styling */
+#scheduleResults table {
+  background-color: #785cbe;
+  color: black;
+  border: 1px solid black;
+}
+
+#scheduleResults th,
+#scheduleResults td {
+  border: 1px solid rgb(255, 255, 255) !important;
+  color: rgb(255, 255, 255);
+  background-color: #785cbe;
+}
+
+#scheduleResults a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+
+#scheduleResults a:hover {
+  text-decoration: underline;
 }

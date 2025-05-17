@@ -14,6 +14,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome Icons -->
+   <script src="https://kit.fontawesome.com/6e16dd0ef0.js" crossorigin="anonymous"></script>
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -49,9 +52,13 @@
         </ul>
       </div>
       <!-- Search Form -->
-      <form class="d-flex ms-auto search-form" role="search">
-        <input class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
-        <button class="btn custom-search-btn" type="submit">Search</button>
+      <form id="globalSearchForm" class="d-flex position-relative search-form" role="search" autocomplete="off">
+  <input id="globalSearchInput" class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
+  <button class="btn custom-search-btn" type="submit">Search</button>
+
+    <!-- Live search dropdown -->
+  <div id="searchDropdown" class="list-group position-absolute w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+</form>
       </form>
     </div>
   </nav>
@@ -150,7 +157,7 @@
           </ul>
         </div>
       </div>
-      <hr>
+      
       <div class="text-center small mt-3 pb-2">
         © 2025 Snug Hub.
       </div>

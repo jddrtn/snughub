@@ -1,3 +1,77 @@
+// Index page
+// Fetch popular shows and render them in a live dropdown
+document.addEventListener('DOMContentLoaded', () => {
+  const input = document.getElementById('globalSearchInput');
+  const dropdown = document.getElementById('searchDropdown');
+  let debounceTimer;
+
+  input.addEventListener('input', () => {
+    const query = input.value.trim();
+
+    clearTimeout(debounceTimer);
+    if (!query) {
+      dropdown.style.display = 'none';
+      return;
+    }
+
+    debounceTimer = setTimeout(() => {
+      performLiveSearch(query);
+    }, 300); // debounce
+  });
+
+  // Hide dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && e.target !== input) {
+      dropdown.style.display = 'none';
+    }
+  });
+
+  function performLiveSearch(query) {
+    dropdown.innerHTML = '<div class="list-group-item">Searching...</div>';
+    dropdown.style.display = 'block';
+
+    const showSearch = fetch(`https://api.tvmaze.com/search/shows?q=${query}`).then(res => res.json());
+    const peopleSearch = fetch(`https://api.tvmaze.com/search/people?q=${query}`).then(res => res.json());
+
+    Promise.all([showSearch, peopleSearch])
+      .then(([shows, people]) => {
+        dropdown.innerHTML = '';
+
+        if (!shows.length && !people.length) {
+          dropdown.innerHTML = '<div class="list-group-item text-muted">No results found</div>';
+          return;
+        }
+
+        shows.slice(0, 5).forEach(item => {
+          const s = item.show;
+          const el = document.createElement('div');
+          el.className = 'list-group-item';
+          el.innerHTML = `<strong>Show:</strong> ${s.name}`;
+          el.addEventListener('click', () => {
+            window.location.href = `show-info.html?id=${s.id}`;
+          });
+          dropdown.appendChild(el);
+        });
+
+        people.slice(0, 5).forEach(item => {
+          const p = item.person;
+          const el = document.createElement('div');
+          el.className = 'list-group-item';
+          el.innerHTML = `<strong>Person:</strong> ${p.name}`;
+          el.addEventListener('click', () => {
+            window.location.href = `person-info.html?id=${p.id}`;
+          });
+          dropdown.appendChild(el);
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        dropdown.innerHTML = '<div class="list-group-item text-danger">Error fetching results</div>';
+      });
+  }
+});
+
+
 // Wait for the DOM to be fully loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
   // Get references to DOM elements
@@ -95,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const div = document.createElement('div');
       div.className = 'col text-center';
       div.innerHTML = `
-        <a href="show-info.html?id=${show.id}" class="text-decoration-none text-dark">
+        <a href="show-info.html?id=${show.id}" class="text-decoration-none">
           <img src="${show.image?.medium}" class="card-img-square mb-2 alt="${show.name}">
-          <div><strong>${show.name}</strong></div>
+          <div class="show-title"><strong>${show.name}</strong></div>
         </a>
       `;
       showsContainer.appendChild(div);

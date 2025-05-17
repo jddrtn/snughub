@@ -31,28 +31,43 @@
   </style>
 </head>
 <body class="bg-light">
-  <!-- =================== Navigation Bar =================== -->
+  <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid">
+      <!-- Logo and Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/snug-logo.png" alt="Logo" width="60" height="60">
+        <img src="images/snug-logo.png" alt="Logo" width="60" height="60" style="margin-right: 0px;">
         Snug Hub
       </a>
+      <!-- Navbar Toggler (for mobile) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li>
-          <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shows.html">Shows</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="people.html">People</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="schedule.html">Schedule</a>
+          </li>
         </ul>
       </div>
       <!-- Search Form -->
-      <form class="d-flex ms-auto search-form" role="search">
-        <input class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
-        <button class="btn custom-search-btn" type="submit">Search</button>
+      <form id="globalSearchForm" class="d-flex position-relative search-form" role="search" autocomplete="off">
+  <input id="globalSearchInput" class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
+  <button class="btn custom-search-btn" type="submit">Search</button>
+
+    <!-- Live search dropdown -->
+  <div id="searchDropdown" class="list-group position-absolute w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+</form>
       </form>
     </div>
   </nav>
@@ -287,13 +302,13 @@
           </ul>
         </div>
       </div>
-      <hr>
+      
       <div class="text-center small mt-3 pb-2">© 2025 Snug Hub.</div>
     </div>
   </footer>
 
   <!-- =================== Bootstrap JS & Custom JS =================== -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="people.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
