@@ -10,6 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Font Awesome Icons -->
+  
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -62,9 +66,12 @@
     <!-- Search + Filters + Sort Row -->
     <div class="row g-2 mb-4 align-items-center">
       <!-- Search Bar (leftmost) -->
-      <div class="col-md-3">
-        <input type="text" id="searchShows" class="form-control form-control-sm" placeholder="Search shows...">
-      </div>
+<div class="col-md-3 position-relative">
+  <i class="fa-solid fa-magnifying-glass position-absolute search-icon"></i>
+  <input type="text" id="searchShows" class="form-control form-control-sm ps-4" placeholder="Search shows...">
+</div>
+
+
       <!-- Genre Filter -->
       <div class="col-md-2">
         <select id="filterGenre" class="form-select form-select-sm">

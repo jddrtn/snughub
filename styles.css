@@ -375,6 +375,17 @@ body {
   color: #ffffff; /* White color for the heading */
 }
 
+/* Styling for the show title */
+.person-name strong {
+  color: white;
+}
+
+a:hover .person-name strong {
+  color: #785cbe; /* Change color on hover */
+}
+
+
+
 /* =========================
   Pagination styles
   ========================= */
@@ -471,6 +482,14 @@ body {
   color: #ffffff; /* White color for the heading */
 }
 
+  .search-icon {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #191919;
+    pointer-events: none;
+  }
+  
 /* =========================
   Schedule page styles
   ========================= */
@@ -501,3 +520,18 @@ body {
 #scheduleResults a:hover {
   text-decoration: underline;
 }
+
+/* =========================
+  Show title styles
+  ========================= */
+
+/* Styling for the show title */
+.show-title strong {
+  color: white;
+}
+
+a:hover .show-title strong {
+  color: #785cbe; /* Change color on hover */
+}
+
+
