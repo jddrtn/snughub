@@ -60,6 +60,7 @@ body {
   background-color: #191919; /* Light gray background color */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
+  color: #ffffff; /* Default text color */
 }
 
 /* =========================
@@ -285,15 +286,29 @@ body {
 /* =========================
   Show info page styles
   ========================= */
+    /* --- Cast Image Styling --- */
+    .cast-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
 
-/* Cast image styling */
-.cast-img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    .cast-img:hover {
+      transform: scale(1.05);
+      cursor: pointer;
+    }
+
+    #cast-name {
+      color: #ffffff; 
+    }
+
+    #character-name {
+      color: #ffffff
+    } 
+
 
 /* =========================
   Tab navigation styles
@@ -301,23 +316,30 @@ body {
 
 /* Tab navigation links */
 .nav-tabs .nav-link {
-  color: #000000;
-  font-weight: 500;
+  color: #ffffff;
+  font-weight: 300;
   transition: background-color 0.3s ease;
+  background-color: #52359A;
+  border-color: #ffffff;
+  border-radius: 8px 8px 0px 0px;
+  border-width: 1px 1px 1px 1px;
+  margin-right: 6px;
 }
 
 /* Tab navigation hover state */
 .nav-tabs .nav-link:hover {
-  background-color:#FFE9F0;
-  color: #000000;
+  background-color:#785cbe;
+  color: #ffffff;
+  border-radius: 8px 8px 0px 0px;
+  border-width: 1px 1px 1px 1px;
+  border-color: #ffffff;
 }
 
 /* Tab navigation active state */
 .nav-tabs .nav-link.active {
-  background-color: #FFE9F0;
-  color: #000000;
+  background-color: #52359A;
+  color: #ffffff;
   font-weight: 600;
-  border-color: #d0bfff #d0bfff #fff;
 }
 
 /* =========================
@@ -330,8 +352,8 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #FFE9F0;
-  border-color: #FFE9F0;
+  background-color: #785cbe;
+  border-color: #785cbe;
 }
 
 /* =========================
@@ -384,6 +406,13 @@ a:hover .person-name strong {
   color: #785cbe; /* Change color on hover */
 }
 
+#show-name {
+  color: #ffffff; /* White color for the heading */
+}
+
+#show-name:hover {
+  color: #785cbe; /* Highlight color on hover */
+}
 
 
 /* =========================
@@ -399,21 +428,21 @@ a:hover .person-name strong {
 .page-item .page-link {
   background-color: #f8f9fa; /* light background */
   color: #333; /* dark text */
-  border: 1px solid #ddd;
   transition: background-color 0.3s, color 0.3s;
 }
 
 /* Hover state */
 .page-item .page-link:hover {
-  background-color: #e2e6ea;
+  background-color: #785cbe;
   color: #000;
+  border-color: #785cbe;
 }
 
 /* Active (current) page */
 .page-item.active .page-link {
-  background-color: #7B6EF6; /* your custom highlight color */
+  background-color: #52359A; /* your custom highlight color */
   color: white;
-  border-color: #7B6EF6;
+  border-color: #52359A;
 }
 
 /* Disabled arrows (optional) */
@@ -489,7 +518,7 @@ a:hover .person-name strong {
     color: #191919;
     pointer-events: none;
   }
-  
+
 /* =========================
   Schedule page styles
   ========================= */
@@ -500,16 +529,16 @@ a:hover .person-name strong {
 
 /* Custom Schedule Table Styling */
 #scheduleResults table {
-  background-color: #785cbe;
+  background-color: #191919;
   color: black;
-  border: 1px solid black;
+  border: 2px solid rgb(255, 255, 255);
 }
 
 #scheduleResults th,
 #scheduleResults td {
-  border: 1px solid rgb(255, 255, 255) !important;
+  border: 2px solid rgb(255, 255, 255) !important;
   color: rgb(255, 255, 255);
-  background-color: #785cbe;
+  background-color: #191919
 }
 
 #scheduleResults a {
@@ -519,7 +548,9 @@ a:hover .person-name strong {
 
 #scheduleResults a:hover {
   text-decoration: underline;
+  color: #785cbe; /* Change color on hover */
 }
+
 
 /* =========================
   Show title styles
@@ -535,3 +566,19 @@ a:hover .show-title strong {
 }
 
 
+
+/* Show image hover effect */
+.show-img-square:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+#person-name {
+  color: #ffffff; /* White color for the heading */
+}
+
+#person-name:hover {
+  color: #785cbe; /* Highlight color on hover */
+} 

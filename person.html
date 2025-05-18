@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
   <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid">
@@ -129,7 +129,7 @@
                         <div class="col text-center">
                           <a href="show-info.html?id=${c._embedded.show.id}" class="text-decoration-none">
                             <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/100'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
-                            <div><strong>${c._embedded.show.name}</strong></div>
+                            <div id="show-name"><strong>${c._embedded.show.name}</strong></div>
                           </a>
                         </div>
                       `).join('')}
@@ -146,7 +146,7 @@
                   <div class="col text-center">
                     <a href="show.html?id=${c._embedded.show.id}" class="text-decoration-none">
                       <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/80'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
-                      <div><strong>${c._embedded.show.name}</strong></div>
+                      <div id="show-name"><strong>${c._embedded.show.name}</strong></div>
                     </a>
                   </div>
                 `).join('')}

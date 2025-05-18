@@ -12,25 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
-
-  <style>
-    /* --- Cast Image Styling --- */
-    .cast-img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
-
-    .cast-img:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
-  </style>
 </head>
-<body class="bg-light">
+<body>
   <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar">
     <div class="container-fluid">
@@ -73,7 +56,7 @@
   </nav>
 
   <!-- =================== Main Content Container =================== -->
-  <div class="container py-5" id="showDetails">
+  <div class="container py-5" id="showDetails"">
     <p>Loading...</p>
   </div>
 
@@ -179,10 +162,10 @@
     // --- Render Cast Tab UI ---
     function renderCastTab() {
       document.getElementById('cast').innerHTML = `
-        <input type="text" id="castInput" class="form-control mb-3" placeholder="Search cast..." />
+       
         <div class="row row-cols-2 row-cols-md-4 g-3 mb-3" id="castGrid"></div>
         <div class="text-center">
-          <button id="loadMoreCast" class="btn btn-outline-primary">Show More</button>
+          <button id="loadMoreCast" class="btn">Show More</button>
         </div>
       `;
       renderCast('', true);
@@ -216,10 +199,10 @@
         const div = document.createElement('div');
         div.className = 'col text-center';
         div.innerHTML = `
-          <a href="person.html?id=${c.person.id}" class="text-decoration-none text-dark d-block">
+          <a href="person.html?id=${c.person.id}" class="text-decoration-none d-block" id="cast-name">
             <img src="${c.person.image?.medium || 'https://via.placeholder.com/80'}" class="cast-img mb-2" alt="${c.person.name}">
-            <div><strong>${c.person.name}</strong></div>
-            <small class="text-muted">as ${c.character.name}</small>
+            <div id="person-name"><strong>${c.person.name}</strong></div>
+            <div id="character-name">as ${c.character.name}</div>
           </a>
         `;
         castGrid.appendChild(div);
