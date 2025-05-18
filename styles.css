@@ -203,10 +203,9 @@ body {
 
 /* Styling for the carousel navigation arrows */
 .carousel-arrow {
-  position: absolute; /* Position arrows relative to the carousel */
   top: 50%; /* Center arrows vertically */
   transform: translateY(-50%); /* Adjust for perfect vertical centering */
-  background-color: rgba(100, 100, 100, 0.5); /* Semi-transparent black background */
+  background-color: #785cbe; /* Semi-transparent black background */
   color: white; /* White arrow color */
   border: none; /* Remove default border */
   font-size: 2rem; /* Large font size for arrows */
