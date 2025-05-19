@@ -54,6 +54,35 @@
   color: white; /* Change text color to white on hover */
 }
 
+#searchDropdown {
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  display: none;
+  width: 100%; /* 🔥 Make it match the search input width */
+  max-width: 600px; /* Prevent it from growing wider */
+}
+
+/* Change link color on hover in search results */
+#searchDropdown a:hover,
+#searchDropdown .list-group-item:hover {
+  color: #785cbe !important;
+  background-color: #f3f0fa;
+}
+
+#searchDropdown .list-group-item.text-center.fw-bold {
+  background-color: #f8f9fa;
+  color: #000000;
+}
+
+#searchDropdown .list-group-item.text-center.fw-bold:hover {
+  background-color: #f3f0fa;
+  color: #785cbe;
+}
+
+
+
+
 /* Global body styling */
 body {
   font-family: 'Nunito', sans-serif; /* Font family for the body */
@@ -286,14 +315,14 @@ body {
   Show info page styles
   ========================= */
     /* --- Cast Image Styling --- */
-    .cast-img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
-    }
+
+
+.card-img-square {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
     .cast-img:hover {
       transform: scale(1.05);

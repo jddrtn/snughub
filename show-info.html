@@ -163,7 +163,7 @@
     function renderCastTab() {
       document.getElementById('cast').innerHTML = `
        
-        <div class="row row-cols-2 row-cols-md-4 g-3 mb-3" id="castGrid"></div>
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="castGrid"></div>
         <div class="text-center">
           <button id="loadMoreCast" class="btn">Show More</button>
         </div>
@@ -200,7 +200,7 @@
         div.className = 'col text-center';
         div.innerHTML = `
           <a href="person.html?id=${c.person.id}" class="text-decoration-none d-block" id="cast-name">
-            <img src="${c.person.image?.medium || 'https://via.placeholder.com/80'}" class="cast-img mb-2" alt="${c.person.name}">
+            <img src="${c.person.image?.medium || 'https://via.placeholder.com/100'}" class="card-img-square mb-2" alt="${c.person.name}">
             <div id="person-name"><strong>${c.person.name}</strong></div>
             <div id="character-name">as ${c.character.name}</div>
           </a>

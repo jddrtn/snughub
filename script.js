@@ -1,184 +1,177 @@
-// Index page
-// Fetch popular shows and render them in a live dropdown
+// Global Search (Live Dropdown + Redirect on Submit)
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('globalSearchInput');
   const dropdown = document.getElementById('searchDropdown');
+  const form = document.getElementById('globalSearchForm');
   let debounceTimer;
 
-  input.addEventListener('input', () => {
-    const query = input.value.trim();
+  if (form && input && dropdown) {
+    // Submit handler to redirect to search-results.html
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = input.value.trim();
+      if (query) {
+        window.location.href = `search-results.html?q=${encodeURIComponent(query)}`;
+      }
+    });
 
-    clearTimeout(debounceTimer);
-    if (!query) {
-      dropdown.style.display = 'none';
-      return;
-    }
+    // Live dropdown
+    input.addEventListener('input', () => {
+      const query = input.value.trim();
+      clearTimeout(debounceTimer);
+      if (!query) {
+        dropdown.style.display = 'none';
+        return;
+      }
 
-    debounceTimer = setTimeout(() => {
-      performLiveSearch(query);
-    }, 300); // debounce
-  });
+      debounceTimer = setTimeout(() => {
+        performLiveSearch(query);
+      }, 300);
+    });
 
-  // Hide dropdown when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target) && e.target !== input) {
-      dropdown.style.display = 'none';
-    }
-  });
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target) && e.target !== input) {
+        dropdown.style.display = 'none';
+      }
+    });
 
-  function performLiveSearch(query) {
-    dropdown.innerHTML = '<div class="list-group-item">Searching...</div>';
-    dropdown.style.display = 'block';
+    function performLiveSearch(query) {
+      dropdown.innerHTML = '<div class="list-group-item">Searching...</div>';
+      dropdown.style.display = 'block';
 
-    const showSearch = fetch(`https://api.tvmaze.com/search/shows?q=${query}`).then(res => res.json());
-    const peopleSearch = fetch(`https://api.tvmaze.com/search/people?q=${query}`).then(res => res.json());
+      const showSearch = fetch(`https://api.tvmaze.com/search/shows?q=${query}`).then(res => res.json());
+      const peopleSearch = fetch(`https://api.tvmaze.com/search/people?q=${query}`).then(res => res.json());
 
-    Promise.all([showSearch, peopleSearch])
-      .then(([shows, people]) => {
-        dropdown.innerHTML = '';
+      Promise.all([showSearch, peopleSearch])
+        .then(([shows, people]) => {
+          dropdown.innerHTML = '';
 
-        if (!shows.length && !people.length) {
-          dropdown.innerHTML = '<div class="list-group-item text-muted">No results found</div>';
-          return;
-        }
+          if (!shows.length && !people.length) {
+            dropdown.innerHTML = '<div class="list-group-item text-muted">No results found</div>';
+            return;
+          }
 
-        shows.slice(0, 5).forEach(item => {
-          const s = item.show;
-          const el = document.createElement('div');
-          el.className = 'list-group-item';
-          el.innerHTML = `<strong>Show:</strong> ${s.name}`;
-          el.addEventListener('click', () => {
-            window.location.href = `show-info.html?id=${s.id}`;
+          shows.slice(0, 5).forEach(item => {
+            const s = item.show;
+            const el = document.createElement('div');
+            el.className = 'list-group-item';
+            el.style.cursor = 'pointer';
+            el.innerHTML = `<strong>Show:</strong> ${s.name}`;
+            el.addEventListener('click', () => {
+              window.location.href = `show-info.html?id=${s.id}`;
+            });
+            dropdown.appendChild(el);
           });
-          dropdown.appendChild(el);
-        });
 
-        people.slice(0, 5).forEach(item => {
-          const p = item.person;
-          const el = document.createElement('div');
-          el.className = 'list-group-item';
-          el.innerHTML = `<strong>Person:</strong> ${p.name}`;
-          el.addEventListener('click', () => {
-            window.location.href = `person-info.html?id=${p.id}`;
+          people.slice(0, 5).forEach(item => {
+            const p = item.person;
+            const el = document.createElement('div');
+            el.className = 'list-group-item';
+            el.style.cursor = 'pointer';
+            el.innerHTML = `<strong>Person:</strong> ${p.name}`;
+            el.addEventListener('click', () => {
+              window.location.href = `person-info.html?id=${p.id}`;
+            });
+            dropdown.appendChild(el);
           });
-          dropdown.appendChild(el);
+          // Add "See all results" button
+const seeAllBtn = document.createElement('div');
+seeAllBtn.className = 'list-group-item text-center fw-bold';
+seeAllBtn.style.cursor = 'pointer';
+seeAllBtn.textContent = 'See all results';
+seeAllBtn.addEventListener('click', () => {
+  const query = document.getElementById('globalSearchInput').value.trim();
+  if (query) {
+    window.location.href = `search-results.html?q=${encodeURIComponent(query)}`;
+  }
+});
+dropdown.appendChild(seeAllBtn);
+
+        })
+        .catch(err => {
+          console.error(err);
+          dropdown.innerHTML = '<div class="list-group-item text-danger">Error fetching results</div>';
         });
-      })
-      .catch(err => {
-        console.error(err);
-        dropdown.innerHTML = '<div class="list-group-item text-danger">Error fetching results</div>';
-      });
+    }
   }
 });
 
-
-
+// Local card filtering (only on pages that use cards with .card-title / .card-text)
 document.addEventListener("DOMContentLoaded", function () {
-  // Select the search input field and all cards
   const searchInput = document.querySelector(".search-form input");
   const cards = document.querySelectorAll(".card");
-  
-  // Add an event listener to the search input for the "keyup" event
-  searchInput.addEventListener("keyup", function () {
-    const query = this.value.toLowerCase(); // Get the search query in lowercase
-    cards.forEach(card => {
-    // Get the title and text content of each card in lowercase
-    const title = card.querySelector(".card-title").textContent.toLowerCase();
-    const text = card.querySelector(".card-text").textContent.toLowerCase();
-    // Check if the query matches the title or text
-    const match = title.includes(query) || text.includes(query);
-    // Show or hide the card based on the match
-    card.parentElement.style.display = match ? "block" : "none";
+
+  if (searchInput && cards.length) {
+    searchInput.addEventListener("keyup", function () {
+      const query = this.value.toLowerCase();
+      cards.forEach(card => {
+        const title = card.querySelector(".card-title")?.textContent.toLowerCase() || '';
+        const text = card.querySelector(".card-text")?.textContent.toLowerCase() || '';
+        const match = title.includes(query) || text.includes(query);
+        card.parentElement.style.display = match ? "block" : "none";
+      });
     });
-  });
-  });
-
- document.addEventListener('DOMContentLoaded', () => {
-    const heroText = document.querySelector('.hero-text');
-    if (heroText) {
-      // Slight delay helps make the fade-in smoother
-      setTimeout(() => {
-        heroText.classList.add('fade-in');
-      }, 200);
-    }
-  });
-
-  // Function to scroll the carousel by a specific direction
-  function scrollCarousel(direction) {
-  const carousel = document.getElementById('cardCarousel'); // Get the carousel element
-  const scrollAmount = 300; // Amount to scroll with each arrow click
-  carousel.scrollBy({
-    left: scrollAmount * direction, // Scroll horizontally based on direction
-    behavior: 'smooth' // smooth scroll effect
-  });
   }
+});
 
-  // Get the carousel element and all cards inside it
+// Hero text animation
+document.addEventListener('DOMContentLoaded', () => {
+  const heroText = document.querySelector('.hero-text');
+  if (heroText) {
+    setTimeout(() => {
+      heroText.classList.add('fade-in');
+    }, 200);
+  }
+});
+
+// Carousel functionality (only runs if carousel exists)
+document.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('cardCarousel');
+  if (!carousel) return;
+
+  let currentIndex = 0;
   const cards = carousel.querySelectorAll('.card');
-  const cardWidth = cards[0].offsetWidth + 16; // Calculate the width of a card including the gap
-  const cardCount = cards.length; // Total number of cards
-  let currentIndex = 0; // Track the current index of the visible card
+  const cardWidth = cards[0]?.offsetWidth + 16 || 276; // fallback width
+  const totalCards = cards.length;
 
-  // Function to scroll the carousel to a specific card
-  function scrollCarousel(direction) {
-  const totalCards = cards.length; // Total number of cards
-  currentIndex += direction; // Update the current index based on direction
+  // Scroll manually (called externally by buttons if needed)
+  window.scrollCarousel = function(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = totalCards - 1;
+    else if (currentIndex >= totalCards) currentIndex = 0;
 
-  // Loop logic to wrap around the carousel
-  if (currentIndex < 0) {
-    currentIndex = totalCards - 1; // Go to the last card if scrolling left from the first card
-  } else if (currentIndex >= totalCards) {
-    currentIndex = 0; // Go to the first card if scrolling right from the last card
-  }
-
-  // Scroll smoothly to the target card
-  carousel.scrollTo({
-    left: currentIndex * cardWidth, // Calculate the scroll position based on card width
-    behavior: 'smooth' // Smooth scroll effect
-  });
-  }
-
-  // Function to fetch popular shows from the API
-async function fetchPopularShows() {
-  const response = await fetch('https://api.tvmaze.com/shows');
-  const shows = await response.json();
-
-  const carousel = document.getElementById('cardCarousel');
-  carousel.innerHTML = ''; // Clear current content
-
-  shows.slice(0, 10).forEach(show => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.style.cursor = 'pointer'; // Make it clear it's clickable
-
-    const image = show.image ? show.image.medium : 'https://via.placeholder.com/200x300';
-
-    card.innerHTML = `
-      <img src="${image}" class="card-img-top" alt="${show.name}" />
-      <div class="card-body text-center">
-      </div>
-    `;
-
-    // On click, go to show details page with show ID in query string
-    card.addEventListener('click', () => {
-      window.location.href = `show-info.html?id=${show.id}`;
+    carousel.scrollTo({
+      left: currentIndex * cardWidth,
+      behavior: 'smooth'
     });
+  };
 
-    carousel.appendChild(card);
-  });
-}
+  // Fetch and render popular shows
+  fetchPopularShows();
 
+  async function fetchPopularShows() {
+    const response = await fetch('https://api.tvmaze.com/shows');
+    const shows = await response.json();
+    carousel.innerHTML = '';
 
-  // Function to scroll the carousel by a specific direction
-  function scrollCarousel(direction) {
-    const carousel = document.getElementById('cardCarousel'); // Get the carousel element
-    const scrollAmount = 300; // Amount to scroll with each arrow click
-    carousel.scrollBy({ 
-      left: scrollAmount * direction, // Scroll horizontally based on direction
-      behavior: 'smooth' // Smooth scroll effect
+    shows.slice(0, 10).forEach(show => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.cursor = 'pointer';
+      const image = show.image ? show.image.medium : 'https://via.placeholder.com/200x300';
+
+      card.innerHTML = `
+        <img src="${image}" class="card-img-top" alt="${show.name}" />
+        <div class="card-body text-center"></div>
+      `;
+
+      card.addEventListener('click', () => {
+        window.location.href = `show-info.html?id=${show.id}`;
+      });
+
+      carousel.appendChild(card);
     });
   }
+});
 
-  // Fetch popular shows from the API when the DOM is fully loaded
-  document.addEventListener('DOMContentLoaded', fetchPopularShows);
