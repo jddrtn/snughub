@@ -44,16 +44,25 @@
           </li>
         </ul>
       </div>
-      <!-- Search Form -->
-      <form id="globalSearchForm" class="d-flex position-relative search-form" role="search" autocomplete="off">
-  <input id="globalSearchInput" class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
+<!-- Search Form -->
+<form id="globalSearchForm"
+      class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
+      role="search" autocomplete="off" style="max-width: 100%;">
+  
+  <input id="globalSearchInput"
+         class="form-control me-2 search-input"
+         type="search"
+         placeholder="Search people or shows..."
+         aria-label="Search"
+         style="min-width: 0; flex: 1;" />
+  
   <button class="btn custom-search-btn" type="submit">Search</button>
 
-    <!-- Live search dropdown -->
-  <div id="searchDropdown" class="list-group position-absolute w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+  <!-- Live search dropdown -->
+  <div id="searchDropdown"
+       class="list-group position-absolute w-100"
+       style="top: 100%; z-index: 1000; display: none;"></div>
 </form>
-      </form>
-    </div>
   </nav>
 
   <div class="container py-4">

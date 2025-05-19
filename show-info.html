@@ -19,112 +19,96 @@
     <div class="container-fluid">
       <!-- Logo and Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/snug-logo.png" alt="Logo" width="60" height="60" style="margin-right: 0px;">
+        <img src="images/snug-logo.png" alt="Logo" width="60" height="60">
         Snug Hub
       </a>
-      <!-- Navbar Toggler (for mobile) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="shows.html">Shows</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="people.html">People</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="schedule.html">Schedule</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li>
+          <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
         </ul>
       </div>
-      <!-- Search Form -->
-      <form id="globalSearchForm" class="d-flex position-relative search-form" role="search" autocomplete="off">
-  <input id="globalSearchInput" class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search" />
+<!-- Search Form -->
+<form id="globalSearchForm"
+      class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
+      role="search" autocomplete="off" style="max-width: 100%;">
+  
+  <input id="globalSearchInput"
+         class="form-control me-2 search-input"
+         type="search"
+         placeholder="Search people or shows..."
+         aria-label="Search"
+         style="min-width: 0; flex: 1;" />
+  
   <button class="btn custom-search-btn" type="submit">Search</button>
 
-    <!-- Live search dropdown -->
-  <div id="searchDropdown" class="list-group position-absolute w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+  <!-- Live search dropdown -->
+  <div id="searchDropdown"
+       class="list-group position-absolute w-100"
+       style="top: 100%; z-index: 1000; display: none;"></div>
 </form>
-      </form>
-    </div>
   </nav>
 
-  <!-- =================== Main Content Container =================== -->
-  <div class="container py-5" id="showDetails"">
+  <!-- Main Content -->
+  <div class="container py-5" id="showDetails">
     <p>Loading...</p>
   </div>
 
   <script>
-    // --- Global Variables ---
     let showId, episodes = [], cast = [], showData;
     let castPage = 0;
     const CAST_PER_PAGE = 8;
 
-    // --- On DOM Loaded: Fetch show data and setup tabs ---
     document.addEventListener('DOMContentLoaded', async () => {
       const params = new URLSearchParams(window.location.search);
       showId = params.get('id');
       const defaultTab = params.get('tab') || 'overview';
-
       if (!showId) return;
 
-      // Fetch show details from TVMaze API
-      showData = await fetch(`https://api.tvmaze.com/shows/${showId}`).then(res => res.json());
+      showData = await fetch(`https://api.tvmaze.com/shows/${showId}`).then(r => r.json());
 
-      // Render tab structure
       document.getElementById('showDetails').innerHTML = `
         <h1 class="mb-3">${showData.name}</h1>
-
         <ul class="nav nav-tabs" id="showTabs" role="tablist">
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">Overview</button>
+            <button class="nav-link" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button">Overview</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="cast-tab" data-bs-toggle="tab" data-bs-target="#cast" type="button" role="tab">Cast</button>
+            <button class="nav-link" id="cast-tab" data-bs-toggle="tab" data-bs-target="#cast" type="button">Cast</button>
           </li>
           <li class="nav-item" role="presentation">
-            <button class="nav-link" id="episodes-tab" data-bs-toggle="tab" data-bs-target="#episodes" type="button" role="tab">Episodes</button>
+            <button class="nav-link" id="episodes-tab" data-bs-toggle="tab" data-bs-target="#episodes" type="button">Episodes</button>
           </li>
         </ul>
-
         <div class="tab-content pt-4">
-          <div class="tab-pane fade" id="overview" role="tabpanel"></div>
-          <div class="tab-pane fade" id="cast" role="tabpanel"></div>
-          <div class="tab-pane fade" id="episodes" role="tabpanel"></div>
+          <div class="tab-pane fade" id="overview"></div>
+          <div class="tab-pane fade" id="cast"></div>
+          <div class="tab-pane fade" id="episodes"></div>
         </div>
       `;
 
-      // --- Tab Event Listeners ---
-      const tabTriggers = document.querySelectorAll('[data-bs-toggle="tab"]');
-      tabTriggers.forEach(btn => {
-        btn.addEventListener('shown.bs.tab', (e) => {
-          const tab = e.target.dataset.bsTarget.replace('#', '');
+      document.querySelectorAll('[data-bs-toggle="tab"]').forEach(btn => {
+        btn.addEventListener('shown.bs.tab', e => {
+          const tab = e.target.dataset.bsTarget.slice(1);
           loadTabContent(tab);
-          // Update URL with current tab
-          const url = new URL(window.location);
-          url.searchParams.set('tab', tab);
-          history.replaceState(null, '', url.toString());
+          history.replaceState(null, '', new URL(location).pathname + `?id=${showId}&tab=${tab}`);
         });
       });
 
-      // Activate default tab
       document.getElementById(`${defaultTab}-tab`).click();
     });
 
-    // --- Load Content for Selected Tab ---
     function loadTabContent(tab) {
       if (tab === 'overview') {
-        // --- Overview Tab Content ---
         document.getElementById('overview').innerHTML = `
           <div class="row">
             <div class="col-md-4 mb-3">
-              <img src="${showData.image?.original}" class="img-fluid rounded" alt="${showData.name}" />
+              <img src="${showData.image?.original}" class="img-fluid rounded" alt="">
             </div>
             <div class="col-md-8">
               <p><strong>Language:</strong> ${showData.language}</p>
@@ -132,148 +116,114 @@
               <p><strong>Premiered:</strong> ${showData.premiered}</p>
               <p><strong>Rating:</strong> ${showData.rating.average ?? 'N/A'}</p>
               <div>${showData.summary}</div>
-              <a href="${showData.officialSite ?? showData.url}" target="_blank" class="btn btn-primary mt-3">Visit Official Page</a>
+              <a href="${showData.officialSite || showData.url}" target="_blank" class="btn btn-primary mt-3">Visit Official Page</a>
             </div>
           </div>
         `;
       }
 
-      if (tab === 'cast' && cast.length === 0) {
-        // --- Fetch and Render Cast Tab ---
+      if (tab === 'cast' && !cast.length) {
         fetch(`https://api.tvmaze.com/shows/${showId}/cast`)
-          .then(res => res.json())
-          .then(data => {
-            cast = data;
-            renderCastTab();
-          });
+          .then(r => r.json())
+          .then(data => { cast = data; renderCastTab(); });
       }
 
-      if (tab === 'episodes' && episodes.length === 0) {
-        // --- Fetch and Render Episodes Tab ---
+      if (tab === 'episodes' && !episodes.length) {
         fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
-          .then(res => res.json())
-          .then(data => {
-            episodes = data;
-            renderEpisodesTab();
-          });
+          .then(r => r.json())
+          .then(data => { episodes = data; renderEpisodesTab(); });
       }
     }
 
-    // --- Render Cast Tab UI ---
     function renderCastTab() {
       document.getElementById('cast').innerHTML = `
-       
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="castGrid"></div>
-        <div class="text-center">
-          <button id="loadMoreCast" class="btn">Show More</button>
-        </div>
+        <div class="text-center"><button id="loadMoreCast" class="btn">Show More</button></div>
       `;
       renderCast('', true);
-      // --- Cast Search Input Listener ---
-      document.getElementById('castInput').addEventListener('input', (e) => {
-        castPage = 0;
-        renderCast(e.target.value.toLowerCase(), true);
-      });
-      // --- Load More Cast Button Listener ---
       document.getElementById('loadMoreCast').addEventListener('click', () => {
-        renderCast(document.getElementById('castInput').value.toLowerCase(), false);
+        renderCast('', false);
       });
     }
-
-    // --- Render Cast List (with Pagination & Filter) ---
     function renderCast(filter = '', reset = false) {
-      const castGrid = document.getElementById('castGrid');
-      if (reset) {
-        castGrid.innerHTML = '';
-        castPage = 0;
-      }
-
-      // Filter cast by name
-      const filtered = cast.filter(c => c.person.name.toLowerCase().includes(filter));
-      const start = castPage * CAST_PER_PAGE;
-      const end = start + CAST_PER_PAGE;
-      const pageCast = filtered.slice(start, end);
-
-      // Render cast cards
-      pageCast.forEach(c => {
+      const grid = document.getElementById('castGrid');
+      if (reset) { grid.innerHTML = ''; castPage = 0; }
+      const page = cast.slice(castPage*CAST_PER_PAGE, ++castPage*CAST_PER_PAGE);
+      page.forEach(c => {
         const div = document.createElement('div');
         div.className = 'col text-center';
-        div.innerHTML = `
-          <a href="person.html?id=${c.person.id}" class="text-decoration-none d-block" id="cast-name">
-            <img src="${c.person.image?.medium || 'https://via.placeholder.com/100'}" class="card-img-square mb-2" alt="${c.person.name}">
-            <div id="person-name"><strong>${c.person.name}</strong></div>
-            <div id="character-name">as ${c.character.name}</div>
-          </a>
-        `;
-        castGrid.appendChild(div);
-      });
+div.innerHTML = `
+  <div>
+<a href="person.html?id=${c.person.id}" class="text-decoration-none d-block cast-link">
+  <img src="${c.person.image?.medium}" class="card-img-square mb-2" alt="${c.person.name}">
+  <div><strong>${c.person.name}</strong></div>
+</a>
 
-      castPage++;
-      // Hide "Show More" if no more cast to show
-      document.getElementById('loadMoreCast').style.display = end >= filtered.length ? 'none' : 'inline-block';
+    </a>
+    <div class="small">as ${c.character.name}</div>
+  </div>`;
+
+        grid.appendChild(div);
+      });
+      if (castPage*CAST_PER_PAGE >= cast.length) {
+        document.getElementById('loadMoreCast').style.display = 'none';
+      }
     }
 
-    // --- Render Episodes Tab UI ---
     function renderEpisodesTab() {
-      // Get unique seasons and episode counts
-      const seasons = [...new Set(episodes.map(ep => ep.season))];
+      const seasons = [...new Set(episodes.map(ep => ep.season))].sort();
       const counts = {};
-      episodes.forEach(ep => counts[ep.season] = (counts[ep.season] || 0) + 1);
+      episodes.forEach(ep => counts[ep.season] = (counts[ep.season]||0)+1);
 
       document.getElementById('episodes').innerHTML = `
         <select class="form-select w-auto mb-3" id="seasonFilter">
-          <option value="all">All Seasons (${episodes.length} eps)</option>
-          ${seasons.map(s => `<option value="${s}">Season ${s} (${counts[s]} eps)</option>`).join('')}
+          ${seasons.map(s =>
+            `<option value="${s}" ${s===1?'selected':''}>
+              Season ${s} (${counts[s]} eps)
+            </option>`
+          ).join('')}
         </select>
         <div class="accordion" id="episodesAccordion"></div>
       `;
 
-      // --- Season Filter Listener ---
-      document.getElementById('seasonFilter').addEventListener('change', (e) => {
-        renderEpisodeList(e.target.value);
+      document.getElementById('seasonFilter').addEventListener('change', e => {
+        renderEpisodeList(+e.target.value);
       });
 
-      renderEpisodeList('all');
+      renderEpisodeList(1);
     }
 
-    // --- Render Episode List (by Season) ---
     function renderEpisodeList(season) {
-      const container = document.getElementById('episodesAccordion');
-      container.innerHTML = '';
-
-      // Filter episodes by selected season
-      const filtered = season === 'all'
-        ? episodes
-        : episodes.filter(ep => ep.season == season);
-
-      // Render episodes as accordion items
-      container.innerHTML = filtered.map((ep, index) => `
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="heading${index}">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
-              S${ep.season}E${ep.number}: ${ep.name}
-            </button>
-          </h2>
-          <div id="collapse${index}" class="accordion-collapse collapse" data-bs-parent="#episodesAccordion">
-            <div class="accordion-body">
-              <p><strong>Airdate:</strong> ${ep.airdate}</p>
-              <p>${ep.summary ? ep.summary.replace(/<[^>]+>/g, '') : 'No description available.'}</p>
+      const acc = document.getElementById('episodesAccordion');
+      acc.innerHTML = episodes
+        .filter(ep => ep.season === season)
+        .map((ep,i) => `
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="head${i}">
+              <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse" data-bs-target="#col${i}">
+                S${ep.season}E${ep.number}: ${ep.name}
+              </button>
+            </h2>
+            <div id="col${i}" class="accordion-collapse collapse" data-bs-parent="#episodesAccordion">
+              <div class="accordion-body">
+                <p><strong>Airdate:</strong> ${ep.airdate}</p>
+                <p><strong>Duration:</strong> ${ep.runtime?ep.runtime+' min':'N/A'}</p>
+                <p>${ep.summary?ep.summary.replace(/<[^>]+>/g,''):'No description.'}</p>
+              </div>
             </div>
           </div>
-        </div>
-      `).join('');
+        `).join('');
     }
   </script>
 
-  <!-- =================== Footer =================== -->
+  <!-- Footer -->
   <footer class="footer pt-5 pb-4 mt-5 border-top">
     <div class="container-fluid px-4">
       <div class="row">
         <div class="col-md-6 mb-4">
           <h5>About Snug Hub</h5>
-          <p class="small">
-            Snug Hub helps you find your favourite comfort TV shows and where to stream them.
-          </p>
+          <p class="small">Snug Hub helps you find your favourite comfort TV shows and where to stream them.</p>
         </div>
         <div class="col-md-6 mb-4">
           <h5>Quick Links</h5>
@@ -285,13 +235,11 @@
           </ul>
         </div>
       </div>
-      
       <div class="text-center small mt-3 pb-2">© 2025 Snug Hub.</div>
     </div>
   </footer>
 
-  <!-- =================== Bootstrap JS & Custom JS =================== -->
+  <!-- Bootstrap JS & Custom JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
