@@ -18,53 +18,29 @@
 </head>
 <body>
   <!-- ===== Navigation Bar ===== -->
-  <nav class="navbar navbar-expand-lg custom-navbar">
+  <nav class="navbar navbar-expand-lg custom-navbar navbar-dark">
     <div class="container-fluid">
-      <!-- Logo and Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/snug-logo.png" alt="Logo" width="60" height="60" style="margin-right: 0px;">
+        <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60">
         Snug Hub
       </a>
-      <!-- Navbar Toggler (for mobile) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="shows.html">Shows</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="people.html">People</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="schedule.html">Schedule</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li>
+          <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
         </ul>
       </div>
-<!-- Search Form -->
-<form id="globalSearchForm"
-      class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
-      role="search" autocomplete="off" style="max-width: 100%;">
-  
-  <input id="globalSearchInput"
-         class="form-control me-2 search-input"
-         type="search"
-         placeholder="Search people or shows..."
-         aria-label="Search"
-         style="min-width: 0; flex: 1;" />
-  
-  <button class="btn custom-search-btn" type="submit">Search</button>
-
-  <!-- Live search dropdown -->
-  <div id="searchDropdown"
-       class="list-group position-absolute w-100"
-       style="top: 100%; z-index: 1000; display: none;"></div>
-</form>
+      <form id="globalSearchForm" class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form" role="search" autocomplete="off">
+        <input id="globalSearchInput" class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search">
+        <button class="btn custom-search-btn" type="submit">Search</button>
+        <div id="searchDropdown" class="list-group position-absolute w-100" style="top: 100%; z-index: 1000; display: none;"></div>
+      </form>
+    </div>
   </nav>
 
   <!-- Main Content: Person Details -->
@@ -72,116 +48,98 @@
     <p>Loading...</p>
   </div>
 
-  <!-- Person Details Script -->
-  <script>
-    // Get the container for person details
-    const personDetails = document.getElementById('personDetails');
-    // Parse URL parameters to get person ID
-    const params = new URLSearchParams(window.location.search);
-    const personId = params.get('id');
+<script>
+  const personDetails = document.getElementById('personDetails');
+  const params = new URLSearchParams(window.location.search);
+  const personId = params.get('id');
 
-    // If no person ID, show error message
-    if (!personId) {
-      personDetails.innerHTML = '<p>Person not found.</p>';
-    } else {
-      let personData = null;
-      let castCredits = [];
+  if (!personId) {
+    personDetails.innerHTML = '<p>Person not found.</p>';
+  } else {
+    let personData = null;
+    let castCredits = [];
 
-      // Fetch person info and cast credits from TVMaze API
-      async function fetchPerson() {
-        // Fetch person details
-        const personRes = await fetch(`https://api.tvmaze.com/people/${personId}`);
-        personData = await personRes.json();
+    async function fetchPerson() {
+      const personRes = await fetch(`https://api.tvmaze.com/people/${personId}`);
+      personData = await personRes.json();
 
-        // Fetch cast credits with embedded show info
-        const creditsRes = await fetch(`https://api.tvmaze.com/people/${personId}/castcredits?embed=show`);
-        castCredits = await creditsRes.json();
+      const creditsRes = await fetch(`https://api.tvmaze.com/people/${personId}/castcredits?embed[]=show&embed[]=character`);
+      castCredits = await creditsRes.json();
 
-        // Render the details on the page
-        renderPersonDetails();
-      }
+      renderPersonDetails();
+    }
 
-      // Render person details and credits
-      function renderPersonDetails() {
-        personDetails.innerHTML = `
-          <h1 class="mb-3">${personData.name}</h1>
+    function renderPersonDetails() {
+      personDetails.innerHTML = `
+        <h1 class="mb-3">${personData.name}</h1>
 
-          <!-- Tabs for Info and Cast Credits -->
-          <ul class="nav nav-tabs" id="personTabs" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">Info</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="credits-tab" data-bs-toggle="tab" data-bs-target="#credits" type="button" role="tab">Cast Credits</button>
-            </li>
-          </ul>
+        <ul class="nav nav-tabs" id="personTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">Info</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="credits-tab" data-bs-toggle="tab" data-bs-target="#credits" type="button" role="tab">Cast Credits</button>
+          </li>
+        </ul>
 
-          <div class="tab-content pt-4">
-            <!-- Info Tab -->
-            <div class="tab-pane fade show active" id="info" role="tabpanel">
-              <div class="row">
-                <!-- Person Image -->
-                <div class="col-md-4 mb-3">
-                  <img src="${personData.image?.original || 'https://via.placeholder.com/250'}" class="img-fluid rounded" alt="${personData.name}">
-                </div>
-                <!-- Person Info -->
-                <div class="col-md-8">
-                  <p><strong>Birthday:</strong> ${personData.birthday ?? 'N/A'}</p>
-                  <p><strong>Gender:</strong> ${personData.gender ?? 'N/A'}</p>
-                  <p><strong>Country:</strong> ${personData.country?.name ?? 'N/A'}</p>
-
-                  <!-- Known For Shows -->
-                  <div class="mt-4">
-                    <h5>Known For</h5>
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                      ${castCredits.slice(0, 3).map(c => `
-                        <div class="col text-center">
-                          <a href="show-info.html?id=${c._embedded.show.id}" class="text-decoration-none">
-                            <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/100'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
-                            <div id="show-name"><strong>${c._embedded.show.name}</strong></div>
-                          </a>
-                        </div>
-                      `).join('')}
-                    </div>
-                  </div>
-                </div>
+        <div class="tab-content pt-4">
+          <div class="tab-pane fade show active" id="info" role="tabpanel">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <img src="${personData.image?.original || 'https://via.placeholder.com/250'}" class="img-fluid rounded" alt="${personData.name}">
               </div>
-            </div>
+              <div class="col-md-8">
+                <p><strong>Birthday:</strong> ${personData.birthday ?? 'N/A'}</p>
+                <p><strong>Gender:</strong> ${personData.gender ?? 'N/A'}</p>
+                <p><strong>Country:</strong> ${personData.country?.name ?? 'N/A'}</p>
 
-            <!-- Cast Credits Tab -->
-            <div class="tab-pane fade" id="credits" role="tabpanel">
-              <div class="row row-cols-2 row-cols-md-4 g-3">
-                ${castCredits.map(c => `
-                  <div class="col text-center">
-                    <a href="show.html?id=${c._embedded.show.id}" class="text-decoration-none">
-                      <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/80'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
-                      <div id="show-name"><strong>${c._embedded.show.name}</strong></div>
-                    </a>
+                <div class="mt-4">
+                  <h5>Known For</h5>
+                  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    ${castCredits.slice(0, 3).map(c => `
+                      <div class="col text-center">
+                        <a href="show-info.html?id=${c._embedded.show.id}" class="text-decoration-none">
+                          <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/100'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
+                          <div class="show-name"><strong>${c._embedded.show.name}</strong></div>
+                        </a>
+                      </div>
+                    `).join('')}
                   </div>
-                `).join('')}
+                </div>
               </div>
             </div>
           </div>
-        `;
-      }
 
-      // Start fetching person data
-      fetchPerson();
+          <div class="tab-pane fade" id="credits" role="tabpanel">
+            <div class="row row-cols-2 row-cols-md-4 g-3">
+              ${castCredits.map(c => `
+                <div class="col text-center">
+                  <a href="show.html?id=${c._embedded.show.id}" class="text-decoration-none d-block">
+                    <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/80'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
+                    <div class="show-name"><strong>${c._embedded.show.name}</strong></div>
+                  </a>
+                  <div class="small text">as ${c._embedded.character?.name || 'Unknown'}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
     }
-  </script>
+
+    fetchPerson();
+  }
+</script>
+
 
   <!-- Footer -->
   <footer class="footer pt-5 pb-4 mt-5 border-top">
     <div class="container-fluid px-4">
       <div class="row">
-        <!-- About Column -->
         <div class="col-md-6 mb-4">
           <h5>About Snug Hub</h5>
-          <p class="small">
-            Snug Hub helps you find your favourite comfort TV shows and where to stream them.
-          </p>
+          <p class="small">Snug Hub helps you find your favourite comfort TV shows and where to stream them.</p>
         </div>
-        <!-- Quick Links Column -->
         <div class="col-md-6 mb-4">
           <h5>Quick Links</h5>
           <ul class="list-unstyled">
@@ -192,16 +150,12 @@
           </ul>
         </div>
       </div>
-      
-      <div class="text-center small mt-3 pb-2">
-        © 2025 Snug Hub.
-      </div>
+      <div class="text-center small mt-3 pb-2">© 2025 Snug Hub.</div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
   <script src="script.js"></script>
 </body>
 </html>

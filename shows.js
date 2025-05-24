@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Wait for the DOM to be fully loaded before running the script
+
 document.addEventListener('DOMContentLoaded', () => {
   // Get references to DOM elements
   const showsContainer = document.getElementById('shows');
@@ -86,10 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Number of shows to display per page
   const SHOWS_PER_PAGE = 18;
-  let allShows = []; // Array to hold all fetched shows
-  let currentPage = 0; // Current page index
+  let allShows = []; 
+  let currentPage = 0; 
 
-  // Fetch shows from the TVMaze API (up to 10 pages)
+  // Fetch shows from the TVMaze 
   async function fetchShows() {
     let page = 0;
     let results = [];
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         break;
     }
 
-    // Pagination logic: calculate which shows to display on the current page
+  
     const totalPages = Math.ceil(filtered.length / SHOWS_PER_PAGE);
     const start = currentPage * SHOWS_PER_PAGE;
     const end = start + SHOWS_PER_PAGE;
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPagination(filtered.length, totalPages);
   }
 
-  // Render pagination controls (page numbers and navigation)
+  // Render pagination controls
   function renderPagination(totalItems, totalPages) {
     paginationContainer.innerHTML = '';
     const nav = document.createElement('nav');
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const startPage = Math.floor(currentPage / maxVisiblePages) * maxVisiblePages;
     const endPage = Math.min(startPage + maxVisiblePages, totalPages);
 
-    // Add "previous" button if not on the first set of pages
+    // Add previous button if not on the first set of pages
     if (startPage > 0) {
       const li = document.createElement('li');
       li.className = 'page-item';

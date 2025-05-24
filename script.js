@@ -1,4 +1,4 @@
-// Global Search (Live Dropdown + Redirect on Submit)
+// Live Dropdown + Redirect on Submit
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('globalSearchInput');
   const dropdown = document.getElementById('searchDropdown');
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let debounceTimer;
 
   if (form && input && dropdown) {
-    // Submit handler to redirect to search-results.html
+    // Submit handler to redirect to search results page
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       const query = input.value.trim();
@@ -125,17 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Carousel functionality (only runs if carousel exists)
+// Carousel functionality
 document.addEventListener('DOMContentLoaded', () => {
   const carousel = document.getElementById('cardCarousel');
   if (!carousel) return;
 
   let currentIndex = 0;
   const cards = carousel.querySelectorAll('.card');
-  const cardWidth = cards[0]?.offsetWidth + 16 || 276; // fallback width
+  const cardWidth = cards[0]?.offsetWidth + 16 || 276; 
   const totalCards = cards.length;
 
-  // Scroll manually (called externally by buttons if needed)
+  // Scroll manually 
   window.scrollCarousel = function(direction) {
     currentIndex += direction;
     if (currentIndex < 0) currentIndex = totalCards - 1;

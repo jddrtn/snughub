@@ -4,12 +4,12 @@
 
 /* Styling for the navigation links in the navbar */
 .navbar-nav .nav-link {
-  color: #ffffff; /* Default color for nav links */
+  color: #ffffff; 
 }
 
 /* Styling for navigation links when hovered */
 .navbar-nav .nav-link:hover {
-  color: #785cbe; /* Highlight color on hover */
+  color: #785cbe; 
 }
 
 /* Styling for the active navigation link */
@@ -360,9 +360,6 @@ body {
 }
 
 
-
-
-
 /* ========== Custom Episode Accordion Styles ========== */
 
 /* Accordion button (episode title bar) */
@@ -505,13 +502,15 @@ a:hover .person-name strong {
   color: #785cbe; /* Change color on hover */
 }
 
-#show-name {
-  color: #ffffff; /* White color for the heading */
+.show-name {
+  color: #ffffff;
 }
 
-#show-name:hover {
-  color: #785cbe; /* Highlight color on hover */
+.show-name:hover {
+  color: #785cbe;
 }
+
+
 
 
 /* =========================
@@ -525,8 +524,8 @@ a:hover .person-name strong {
 
 /* Regular pagination buttons */
 .page-item .page-link {
-  background-color: #f8f9fa; /* light background */
-  color: #333; /* dark text */
+  background-color: #f8f9fa; 
+  color: #333; 
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -539,45 +538,16 @@ a:hover .person-name strong {
 
 /* Active (current) page */
 .page-item.active .page-link {
-  background-color: #52359A; /* your custom highlight color */
+  background-color: #52359A; 
   color: white;
   border-color: #52359A;
 }
 
-/* Disabled arrows (optional) */
+/* Disabled arrows */
 .page-item.disabled .page-link {
   background-color: #e9ecef;
   color: #999;
   border-color: #dee2e6;
-}
-
-/* =========================
-  Schedule page styles
-  ========================= */
-
-/* Schedule navigation button */
-.schedule-nav-btn {
-  font-weight: 700;
-  font-size: 1.2rem;
-  padding: 6px 12px;
-  border: 2px solid #6c757d;
-  color: #6c757d;
-  background-color: white;
-  transition: all 0.2s ease-in-out;
-}
-
-/* Schedule navigation button hover */
-.schedule-nav-btn:hover:not(:disabled) {
-  background-color: #f8f9fa;
-  border-color: #343a40;
-  color: #343a40;
-  cursor: pointer;
-}
-
-/* Disabled schedule navigation button */
-.schedule-nav-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 
 /* =========================
@@ -586,7 +556,7 @@ a:hover .person-name strong {
 
 /* Search bar container for shows page */
 #searchShows {
-  max-width: 600px; /* Match your people search bar width */
+  max-width: 600px; 
   margin: 0 auto;
 }
 
@@ -607,7 +577,7 @@ a:hover .person-name strong {
 }
 
 #tv-shows-heading {
-  color: #ffffff; /* White color for the heading */
+  color: #ffffff; 
 }
 
   .search-icon {
@@ -622,32 +592,52 @@ a:hover .person-name strong {
   Schedule page styles
   ========================= */
 
-  #schedule-heading {
-  color: #ffffff; /* White color for the heading */
+/* Show link styles */
+#scheduleTable tbody td a {
+  color: #000000;
 }
 
-/* Custom Schedule Table Styling */
-#scheduleResults table {
-  background-color: #191919;
-  color: black;
-  border: 2px solid rgb(255, 255, 255);
+#scheduleTable tbody td a:hover {
+  color: #785cbe; !important; ;
 }
 
-#scheduleResults th,
-#scheduleResults td {
-  border: 2px solid rgb(255, 255, 255) !important;
-  color: rgb(255, 255, 255);
-  background-color: #191919
+#scheduleTable tbody td {
+  color: #000000; 
 }
 
-#scheduleResults a {
-  color: rgb(255, 255, 255);
-  text-decoration: none;
+#scheduleTable thead th {
+  background-color: #52359A; /* Purple background for header */
+  color: white; /* White text for header */
+  font-weight: bold; /* Bold font for header */
 }
 
-#scheduleResults a:hover {
-  text-decoration: underline;
-  color: #785cbe; /* Change color on hover */
+#scheduleTable tbody tr{
+  background-color: #f5f5f5; 
+}
+
+/* Dropdown hover styling */
+.bootstrap-select .dropdown-menu li a:hover {
+  background-color: #785cbe;
+  color: white;
+}
+
+.bootstrap-select .dropdown-menu li.active > a {
+  background-color: #52359A;
+  color: white;
+}
+
+/* Match date input to Bootstrap Select appearance */
+#scheduleDate {
+  height: 38px; 
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  line-height: 1.5;
+}
+#scheduleDate {
+  width: 100%;
 }
 
 
@@ -665,13 +655,11 @@ a:hover .show-title strong {
 }
 
 
-
 /* Show image hover effect */
 .show-img-square:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
 
 
 #person-name {
