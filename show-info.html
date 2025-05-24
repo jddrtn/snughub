@@ -155,9 +155,10 @@
 div.innerHTML = `
   <div>
 <a href="person.html?id=${c.person.id}" class="text-decoration-none d-block cast-link">
-  <img src="${c.person.image?.medium}" class="card-img-square mb-2" alt="${c.person.name}">
+  <img src="${c.person.image?.medium || 'images/no_image.png'}" class="card-img-square mb-2" alt="${c.person.name}">
   <div><strong>${c.person.name}</strong></div>
 </a>
+
 
     </a>
     <div class="small">as ${c.character.name}</div>

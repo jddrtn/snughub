@@ -86,7 +86,7 @@
           <div class="tab-pane fade show active" id="info" role="tabpanel">
             <div class="row">
               <div class="col-md-4 mb-3">
-                <img src="${personData.image?.original || 'https://via.placeholder.com/250'}" class="img-fluid rounded" alt="${personData.name}">
+                <img src="${personData.image?.original || 'images/no_image.png'}" onerror="this.onerror=null; this.src='images/no_image.png';" class="img-fluid rounded" alt="${personData.name}">
               </div>
               <div class="col-md-8">
                 <p><strong>Birthday:</strong> ${personData.birthday ?? 'N/A'}</p>
@@ -99,7 +99,7 @@
                     ${castCredits.slice(0, 3).map(c => `
                       <div class="col text-center">
                         <a href="show-info.html?id=${c._embedded.show.id}" class="text-decoration-none">
-                          <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/100'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
+                          <img src="${c._embedded.show.image?.medium || 'images/no_image.png'}" onerror="this.onerror=null; this.src='images/no_image.png';" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
                           <div class="show-name"><strong>${c._embedded.show.name}</strong></div>
                         </a>
                       </div>
@@ -115,7 +115,7 @@
               ${castCredits.map(c => `
                 <div class="col text-center">
                   <a href="show.html?id=${c._embedded.show.id}" class="text-decoration-none d-block">
-                    <img src="${c._embedded.show.image?.medium || 'https://via.placeholder.com/80'}" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
+                    <img src="${c._embedded.show.image?.medium || 'images/no_image.png'}" onerror="this.onerror=null; this.src='images/no_image.png';" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
                     <div class="show-name"><strong>${c._embedded.show.name}</strong></div>
                   </a>
                   <div class="small text">as ${c._embedded.character?.name || 'Unknown'}</div>
@@ -130,7 +130,6 @@
     fetchPerson();
   }
 </script>
-
 
   <!-- Footer -->
   <footer class="footer pt-5 pb-4 mt-5 border-top">

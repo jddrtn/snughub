@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       div.className = 'col text-center';
       div.innerHTML = `
         <a href="person.html?id=${person.id}" class="text-decoration-none d-block h-100">
-          <img src="${person.image?.medium || 'https://via.placeholder.com/100'}" class="card-img-square mb-2" alt="${person.name}">
+          <img src="${person.image?.medium || 'images/no_image.png'}" class="card-img-square mb-2" alt="${person.name}">
           <div class="person-name"><strong>${person.name}</strong></div>
         </a>
       `;
