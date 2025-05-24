@@ -1,0 +1,11 @@
+{
+  "name": "snughub",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jddrtn/snughub.git",
+  "author": "jddrtn <jadeedarton@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.3.6"
+  }
+}

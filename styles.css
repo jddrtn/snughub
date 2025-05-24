@@ -1,5 +1,5 @@
 /* =========================
-  Index page styles
+  Navigation bar page styles
   ========================= */
 
 /* Styling for the navigation links in the navbar */
@@ -14,15 +14,15 @@
 
 /* Styling for the active navigation link */
 .navbar-nav .nav-link.active {
-  color: #ffffff; /* Primary color for active link */
-  font-weight: bold; /* Bold font for active link */
+  color: #ffffff; 
+  font-weight: bold; 
 }
 
 /* Styling for the website title in the navbar */
 .navbar-brand {
   font-family: 'Nunito', sans-serif; /* Font family for the brand */
   color: #ffffff; /* Override color for the brand */
-  font-weight: 750; /* Bold font weight for the brand */
+  font-weight: 750; 
 }
 
 /* Styling for the navbar brand when hovered */
@@ -104,6 +104,18 @@ body {
 }
 
 /* =========================
+  Loading spinner styles
+  ========================= */
+#loadingSpinner {
+  text-align: center;
+}
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+
+/* =========================
   Hero section styles
   ========================= */
 
@@ -148,17 +160,7 @@ body {
   background-color: #785cbe;
 }
 
-/* Hero text animation (fade-in) */
-.hero-text {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-}
 
-.hero-text.fade-in {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 /* =========================
   Content section styles
