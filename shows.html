@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Snug Hub - Shows</title>
+  <meta name="description" content="Find your next favorite TV show on Snug Hub. Browse and filter by genre, language, and country to discover what to watch next." />
+  <meta name="keywords" content="TV shows, comfort shows, stream TV, shows by genre, shows by country, shows by language, Snug Hub, TV series guide" />
+  <title>Browse TV Shows by Genre, Language & Country | Snug Hub</title>
+
   <!-- Bootstrap CSS -->
    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google Fonts -->
@@ -12,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- Font Awesome Icons -->
+
   
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css" />
@@ -70,7 +73,8 @@
 
   <div class="container py-4">
     <!-- Page Title -->
-    <h1 id="tv-shows-heading" class="text-center">TV Shows</h1>
+        <h1 id="heading" class="text-center">Shows</h1>
+        <h2 id="subheading" class="text-center">Love drama? Crave comedy? Browse and find your next binge watch!</h2>
 
     <!-- Search + Filters + Sort Row -->
     <div class="row g-2 mb-4 align-items-center">
@@ -131,21 +135,20 @@
     <div id="pagination" class="mt-4 text-center"></div>
   </div>
 
-  <!-- Footer -->
-  <footer class="footer pt-5 pb-4 mt-5 border-top">
+  <!-- ===== Footer ===== -->
+  <footer class="footer pt-5 pb-4 mt-5 border-top w-100">
     <div class="container-fluid px-4">
       <div class="row">
-        <!-- Footer Column 1: About -->
+        <!-- About Section -->
         <div class="col-md-6 mb-4">
-          <h5>About Snug Hub</h5>
-          <p class="small">
-            Snug Hub helps you find your favourite comfort TV shows and where to stream them.
-          </p>
+          <h3>About Snug Hub</h3>
+          <h4 class="small">
+            Snug Hub helps you find your favourite comfort TV shows and where to watch them.
+          </h4>
         </div>
-
-        <!-- Footer Column 2: Quick Links -->
+        <!-- Quick Links -->
         <div class="col-md-6 mb-4">
-          <h5>Quick Links</h5>
+          <h3>Quick Links</h3>
           <ul class="list-unstyled">
             <li><a href="index.html" class="hover-link">Home</a></li>
             <li><a href="shows.html" class="hover-link">Shows</a></li>
@@ -154,8 +157,7 @@
           </ul>
         </div>
       </div>
-
-      <!-- Copyright -->
+      
       <div class="text-center small mt-3 pb-2">
         © 2025 Snug Hub.
       </div>

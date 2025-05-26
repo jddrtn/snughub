@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Snug Hub - People</title>
+  <meta name="description" content="Explore a diverse cast of actors on Snug Hub. Filter by gender and country to find your favorites and discover new talent." />
+  <meta name="keywords" content="actors, actresses, TV industry, TV personalities, discover actors, find actors, actor profiles" />
+  <title>Browse Actors by Country and Gender | Snug Hub</title>
+
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +41,8 @@
   </nav>
 
   <div class="container py-4">
-    <h1 id="people-heading" class="text-center">People</h1>
+    <h1 id="heading" class="text-center">People</h1>
+    <h2 id="subheading" class="text-center">From red carpets to directors’ chairs — find your faves!</h2>
     <div class="row g-2 mb-4 align-items-center">
       <div class="col-md-3 position-relative">
         <i class="fa-solid fa-magnifying-glass position-absolute search-icon"></i>
@@ -65,11 +69,6 @@
       </div>
     </div>
 
-    <div id="loadingSpinner" class="text-center my-4" style="display: none;">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
 
     <div class="container px-3">
       <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="people"></div>
@@ -77,15 +76,20 @@
     <div id="pagination" class="mt-4 text-center"></div>
   </div>
 
-  <footer class="footer pt-5 pb-4 mt-5 border-top">
+  <!-- ===== Footer ===== -->
+  <footer class="footer pt-5 pb-4 mt-5 border-top w-100">
     <div class="container-fluid px-4">
       <div class="row">
+        <!-- About Section -->
         <div class="col-md-6 mb-4">
-          <h5>About Snug Hub</h5>
-          <p class="small">Snug Hub helps you find your favourite comfort TV shows and where to stream them.</p>
+          <h3>About Snug Hub</h3>
+          <h4 class="small">
+            Snug Hub helps you find your favourite comfort TV shows and where to watch them.
+          </h4>
         </div>
+        <!-- Quick Links -->
         <div class="col-md-6 mb-4">
-          <h5>Quick Links</h5>
+          <h3>Quick Links</h3>
           <ul class="list-unstyled">
             <li><a href="index.html" class="hover-link">Home</a></li>
             <li><a href="shows.html" class="hover-link">Shows</a></li>
@@ -94,7 +98,10 @@
           </ul>
         </div>
       </div>
-      <div class="text-center small mt-3 pb-2">© 2025 Snug Hub.</div>
+      
+      <div class="text-center small mt-3 pb-2">
+        © 2025 Snug Hub.
+      </div>
     </div>
   </footer>
 
@@ -334,6 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   </script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="loading-spinner.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>

@@ -94,7 +94,9 @@
 }
 
 
-/* Global body styling */
+/* =========================
+  Global styles
+  ========================= */
 body {
   font-family: 'Nunito', sans-serif; /* Font family for the body */
   background-color: #191919; /* Light gray background color */
@@ -103,16 +105,15 @@ body {
   color: #ffffff; /* Default text color */
 }
 
-/* =========================
-  Loading spinner styles
-  ========================= */
-#loadingSpinner {
-  text-align: center;
+#heading {
+  font-size: 2.25rem;
+  margin-bottom: 0 !important;
 }
-.spinner-border {
-  width: 3rem;
-  height: 3rem;
+
+#subheading {
+  font-size: 1rem; 
 }
+
 
 
 /* =========================
@@ -292,8 +293,9 @@ body {
   flex: 1 1 300px;
 }
 
-.footer h5 {
+.footer h3 {
   font-weight: 600;
+  font-size: 1.25rem;
   color: #ffffff;
 }
 
@@ -312,17 +314,19 @@ body {
 
 /* Styling for individual person cards */
 .person {
-  border: 1px solid #ccc; /* Add a light gray border */
-  padding: 10px; /* Add padding inside the card */
-  width: 180px; /* Set a fixed width for the card */
-  text-align: center; /* Center-align text inside the card */
+  border: 1px solid #ccc; /
+  padding: 10px; 
+  width: 180px; 
+  text-align: center;
 }
 
 /* Styling for images inside person cards */
 .person img {
-  width: 100%; /* Make the image take up the full width of the card */
-  height: auto; /* Maintain the aspect ratio of the image */
+  width: 100%; 
+  height: auto; 
 }
+
+
 
 /* =========================
   Show info page styles
@@ -671,3 +675,16 @@ a:hover .show-title strong {
 #person-name:hover {
   color: #785cbe; /* Highlight color on hover */
 } 
+
+/* =========================
+  Search Results page
+  ========================= */
+
+#search-heading {
+font-size: 2.25rem;
+margin-bottom: 0 !important;
+}
+
+#search-subheading {
+  font-size: 1rem; 
+}
