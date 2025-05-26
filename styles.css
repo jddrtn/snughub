@@ -63,21 +63,16 @@
   max-width: 600px; /* Prevent it from growing wider */
 }
 
-/* Change link color on hover in search results */
+/* Change link color on hover in live search results */
 #searchDropdown a:hover,
 #searchDropdown .list-group-item:hover {
-  color: #785cbe !important;
-  background-color: #f3f0fa;
-}
-
-#searchDropdown .list-group-item.text-center.fw-bold {
-  background-color: #f8f9fa;
-  color: #000000;
+  background-color: #785cbe !important;
+  color: #ffffff;
 }
 
 #searchDropdown .list-group-item.text-center.fw-bold:hover {
-  background-color: #f3f0fa;
-  color: #785cbe;
+  background-color: #785cbe !important;
+  color: #ffffff;
 }
 
 #globalSearchInput {
@@ -92,6 +87,19 @@
   padding-bottom: 0.375rem;
   font-size: 1rem;
 }
+
+.list-group-item.active {
+  background-color: #785cbe;
+  color: white;
+}
+
+#searchDropdown .list-group-item:last-child:hover,
+#searchDropdown .list-group-item:last-child:focus,
+#searchDropdown .list-group-item:last-child.active {
+  background-color: #785cbe;
+  color: white;
+}
+
 
 
 /* =========================
@@ -314,7 +322,7 @@ body {
 
 /* Styling for individual person cards */
 .person {
-  border: 1px solid #ccc; /
+  border: 1px solid #ccc;
   padding: 10px; 
   width: 180px; 
   text-align: center;
@@ -604,7 +612,7 @@ a:hover .person-name strong {
 }
 
 #scheduleTable tbody td a:hover {
-  color: #785cbe; !important; ;
+  color: #785cbe !important; 
 }
 
 #scheduleTable tbody td {

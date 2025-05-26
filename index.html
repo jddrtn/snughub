@@ -2,45 +2,37 @@
 <html lang="en">
 <head>
   <!-- ===== Metadata and External Resources ===== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Snug Hub helps you discover your favorite comfort shows, find where to watch them, and explore by genre, country, or language." />
-  <meta name="keywords" content="comfort shows, stream TV shows, find shows to watch, feel-good series, TV guide, show schedule" />
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Snug Hub helps you discover your favorite comfort shows, find where to watch them, and explore by genre, country, or language."/>
+  <meta name="keywords" content="comfort shows, TV shows, find shows to watch, feel-good series, TV guide, show schedule"/>
   <title>Discover Where To Watch Your Go-To Comfort Shows | Snug Hub</title>
-
-
   <!-- Bootstrap CSS -->
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-
-
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
 
+<body>
   <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar navbar-dark">
     <div class="container-fluid">
       <!-- Logo and Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;">
-        Snug Hub
-      </a>
+      <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;"> Snug Hub</a>
       <!-- Navbar Toggler (for mobile) -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
+            <a class="nav-link active" href="index.html" aria-current="page">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="shows.html">Shows</a>
@@ -58,93 +50,107 @@
       class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
       role="search" autocomplete="off" style="max-width: 100%;">
   
-  <input id="globalSearchInput"
-         class="form-control me-2 search-input"
-         type="search"
-         placeholder="Search people or shows..."
-         aria-label="Search"
-         style="min-width: 0; flex: 1;" />
+<input id="globalSearchInput"
+       class="form-control me-2 search-input"
+       type="search"
+       role="combobox"
+       placeholder="Search people or shows..."
+       aria-label="Search people or shows"
+       aria-autocomplete="list"
+       aria-expanded="true"
+       aria-controls="searchDropdown"
+       aria-activedescendant=""
+       style="min-width: 0; flex: 1;"/>
   
-  <button class="btn custom-search-btn" type="submit">Search</button>
+  <button class="btn custom-search-btn" type="submit" aria-label="Submit search">Search</button>
 
   <!-- Live search dropdown -->
-  <div id="searchDropdown"
-       class="list-group position-absolute w-100"
-       style="top: 100%; z-index: 1000; display: none;"></div>
+<div id="searchDropdown"
+     role="listbox"
+     class="list-group position-absolute w-100"
+     style="top: 100%; z-index: 1000; display: none;"></div>
+
 </form>
   </nav>
+  <!-- ===== End of Navigation Bar ===== -->
 
+<main>
   <!-- ===== Hero Section ===== -->
   <div class="hero">
     <div class="hero-text">
-<h1 class="mb-2">Find Your Next Comfort Show</h1>
-<p class="mt-0">Discover where to watch your go-to comfort shows across all channels</p>
-      <a href="shows.html" class="hero-button">Start Exploring</a>
+      <h1 class="mb-2">Find Your Next Comfort Show</h1>
+      <p class="mt-0">Discover where to watch your go-to comfort shows across all channels</p>
+      <a href="shows.html" class="hero-button" aria-label="Browse TV shows">Start Exploring</a>
     </div>
   </div>
+  <!-- ===== End of Hero Section ===== -->
 
   <!-- ===== Content Section: Trending Now Carousel ===== -->
   <div class="container content-section">
     <h2 class="text-center mb-4">Trending Now</h2>
-    <div class="carousel-wrapper">
+    <div class="carousel-wrapper" role="region" aria-label="Trending Shows Carousel" aria-describedby="carousel-instructions">
+      <!-- Accessibility Instructions for Screen Readers -->
+      <div class="visually-hidden" id="carousel-instructions">Use left and right arrow keys to scroll through trending shows.</div>
+
       <!-- Left Arrow -->
-      <button class="carousel-arrow left" onclick="scrollCarousel(-1)">‹</button>
+      <button class="carousel-arrow left" onclick="scrollCarousel(-1)" aria-label="Scroll left">‹</button>
       <!-- Scrollable Card Carousel -->
       <div class="card-carousel" id="cardCarousel">
         <!-- Card 1 -->
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 1" />
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 1"/>
           <div class="card-body">
-            <h3 class="card-title">Show Title 1</h2>
+            <h2 class="card-title">Show Title 1</h2>
             <p class="card-text">Description of the show goes here.</p>
           </div>
         </div>
         <!-- Card 2 -->
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 2" />
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 2"/>
           <div class="card-body">
-            <h3 class="card-title">Show Title 2</h2>
+            <h2 class="card-title">Show Title 2</h2>
             <p class="card-text">Description of the show goes here.</p>
           </div>
         </div>
         <!-- Card 3 -->
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 3" />
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 3"/>
           <div class="card-body">
-            <h3 class="card-title">Show Title 3</h2>
+            <h2 class="card-title">Show Title 3</h2>
             <p class="card-text">Description of the show goes here.</p>
           </div>
         </div>
         <!-- Card 4 -->
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 4" />
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 4"/>
           <div class="card-body">
-            <h3 class="card-title">Show Title 4</h2>
+            <h2 class="card-title">Show Title 4</h2>
             <p class="card-text">Description of the show goes here.</p>
           </div>
         </div>
         <!-- Card 5 -->
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 5" />
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 5"/>
           <div class="card-body">
-            <h3 class="card-title">Show Title 5</h2>
+            <h2 class="card-title">Show Title 5</h2>
             <p class="card-text">Description of the show goes here.</p>
           </div>
         </div>
         <!-- Card 6 -->
         <div class="card">
-          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 6" />
+          <img src="https://via.placeholder.com/200x300" class="card-img-top" alt="Show 6"/>
           <div class="card-body">
-            <h3 class="card-title">Show Title 6</h2>
+            <h2 class="card-title">Show Title 6</h2>
             <p class="card-text">Description of the show goes here.</p>
           </div>
         </div>
       </div>
       <!-- Right Arrow -->
-      <button class="carousel-arrow right" onclick="scrollCarousel(1)">›</button>
+      <button class="carousel-arrow right" onclick="scrollCarousel(1)" aria-label="Scroll right">›</button>
     </div>
   </div>
-  <!-- ===== End Content Section ===== -->
+  </main>
+  <!-- ===== End of Content Section ===== -->
 
   <!-- ===== Footer ===== -->
   <footer class="footer pt-5 pb-4 mt-5 border-top w-100">
@@ -168,12 +174,13 @@
           </ul>
         </div>
       </div>
-      
+      <!-- Copyright Notice -->
       <div class="text-center small mt-3 pb-2">
         © 2025 Snug Hub.
       </div>
     </div>
   </footer>
+  <!-- ===== End of Footer ===== -->
 
   <!-- ===== Scripts ===== -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
