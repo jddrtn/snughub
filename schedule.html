@@ -96,17 +96,20 @@
   <!-- Page Logic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      $('#scheduleCountry').selectpicker(); // Initialize Bootstrap Select
+      // Initialize Bootstrap Select for country dropdown
+      $('#scheduleCountry').selectpicker();
 
       const scheduleTableBody = document.querySelector('#scheduleTable tbody');
       const dateInput = document.getElementById('scheduleDate');
       const today = new Date().toISOString().split('T')[0];
-      dateInput.value = today;
+      dateInput.value = today; // Set date input to today by default
 
+      // Fetch schedule data from TVmaze API
       function fetchSchedule() {
         const date = dateInput.value;
         const country = $('#scheduleCountry').val();
 
+        // Show loading message while fetching
         scheduleTableBody.innerHTML = '<tr><td colspan="5" class="text-center">Loading schedule...</td></tr>';
 
         fetch(`https://api.tvmaze.com/schedule?country=${country}&date=${date}`)
@@ -114,14 +117,16 @@
           .then(data => renderSchedule(data))
           .catch(err => {
             console.error(err);
+            // Show error message if fetch fails
             scheduleTableBody.innerHTML = '<tr><td colspan="5" class="text-danger text-center">Error loading schedule.</td></tr>';
           });
       }
 
+      // Render schedule data into the table
       function renderSchedule(data) {
         scheduleTableBody.innerHTML = '';
         data
-          .sort((a, b) => a.airtime.localeCompare(b.airtime))
+          .sort((a, b) => a.airtime.localeCompare(b.airtime)) // Sort by airtime
           .forEach(entry => {
             const show = entry.show;
             const row = document.createElement('tr');
@@ -136,6 +141,7 @@
           });
       }
 
+      // Event listeners for filters
       dateInput.addEventListener('change', fetchSchedule);
       $('#scheduleCountry').on('changed.bs.select', fetchSchedule);
 
