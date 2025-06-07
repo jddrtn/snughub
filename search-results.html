@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore search results for TV shows and actors on Snug Hub. Find what you're looking for and start discovering new favourites." />
-  <meta name="keywords" content="TV show search, actor search, find shows, find actors, show database, TV cast search, Snug Hub" />
+  <!-- ===== Metadata and External Resources ===== -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Explore search results for TV shows and actors on Snug Hub. Find what you're looking for and start discovering new favourites."/>
+  <meta name="keywords" content="TV show search, actor search, find shows, find actors, show database, TV cast search, Snug Hub"/>
   <title>Search Results for TV Shows and People | Snug Hub</title>
-
-
+  <!-- Bootstrap CSS -->
  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+  <header>
   <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar navbar-dark">
     <div class="container-fluid">
       <!-- Logo and Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;">
-        Snug Hub
-      </a>
+      <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;"> Snug Hub</a>
       <!-- Navbar Toggler (for mobile) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
+            <a class="nav-link" href="index.html" aria-current="page">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="shows.html">Shows</a>
@@ -51,22 +50,31 @@
       class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
       role="search" autocomplete="off" style="max-width: 100%;">
   
-  <input id="globalSearchInput"
-         class="form-control me-2 search-input"
-         type="search"
-         placeholder="Search people or shows..."
-         aria-label="Search"
-         style="min-width: 0; flex: 1;" />
+<input id="globalSearchInput"
+       class="form-control me-2 search-input"
+       type="search"
+       role="combobox"
+       placeholder="Search people or shows..."
+       aria-label="Search people or shows"
+       aria-autocomplete="list"
+       aria-expanded="true"
+       aria-controls="searchDropdown"
+       aria-activedescendant=""
+       style="min-width: 0; flex: 1;"/>
   
-  <button class="btn custom-search-btn" type="submit">Search</button>
+  <button class="btn custom-search-btn" type="submit" aria-label="Submit search">Search</button>
 
   <!-- Live search dropdown -->
-  <div id="searchDropdown"
-       class="list-group position-absolute w-100"
-       style="top: 100%; z-index: 1000; display: none;"></div>
+<div id="searchDropdown"
+     role="listbox"
+     class="list-group position-absolute w-100"
+     style="top: 100%; z-index: 1000; display: none;"></div>
+
 </form>
   </nav>
-
+  <!-- ===== End of Navigation Bar ===== -->
+  </header>
+  <!-- ===== Search Results Section ===== -->
   <div class="container py-4">
     <h1 id="search-heading" class="text-center">Search Results</h1>
     <h2 id="search-subheading" class="text-center">Find what you're looking for?</h2>
@@ -87,93 +95,107 @@
 
   <!-- Custom JS for Search Results -->
   <script>
+    // Wait for the DOM to be fully loaded
     document.addEventListener("DOMContentLoaded", () => {
+      // Get the search query from the URL parameters
       const params = new URLSearchParams(window.location.search);
       const query = params.get("q")?.toLowerCase() || "";
       const resultsContainer = document.getElementById("searchResults");
       const paginationContainer = document.getElementById("pagination");
-      const resultsPerPage = 18;
+      const resultsPerPage = 18; // Number of results per page
       let currentPage = 0;
       let combinedResults = [];
 
+      // If no query is provided, show a message and exit
       if (!query) {
-        resultsContainer.innerHTML = "<p>No search query provided.</p>";
-        return;
+      resultsContainer.innerHTML = "<p>No search query provided.</p>";
+      return;
       }
 
+      // Update the heading to show the current search query
       document.getElementById("search-heading").innerHTML = `Search Results for: <strong>${query}</strong>`;
 
+      // Fetch shows and people from TVmaze API in parallel
       Promise.all([
-        fetch(`https://api.tvmaze.com/search/shows?q=${query}`).then(res => res.json()),
-        fetch(`https://api.tvmaze.com/search/people?q=${query}`).then(res => res.json())
+      fetch(`https://api.tvmaze.com/search/shows?q=${query}`).then(res => res.json()),
+      fetch(`https://api.tvmaze.com/search/people?q=${query}`).then(res => res.json())
       ])
       .then(([shows, people]) => {
-        combinedResults = [
-          ...shows.map(item => ({ type: "show", data: item.show })),
-          ...people.map(item => ({ type: "person", data: item.person }))
-        ];
-        renderPage();
+      // Combine show and people results into a single array
+      combinedResults = [
+        ...shows.map(item => ({ type: "show", data: item.show })),
+        ...people.map(item => ({ type: "person", data: item.person }))
+      ];
+      renderPage();
       });
 
+      // Render the current page of results
       function renderPage() {
-        const start = currentPage * resultsPerPage;
-        const end = start + resultsPerPage;
-        const pageResults = combinedResults.slice(start, end);
+      const start = currentPage * resultsPerPage;
+      const end = start + resultsPerPage;
+      const pageResults = combinedResults.slice(start, end);
 
-        resultsContainer.innerHTML = "";
+      resultsContainer.innerHTML = "";
 
-        pageResults.forEach(item => {
-          const div = document.createElement("div");
-          div.className = "col text-center";
+      // Create a card for each result
+      pageResults.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "col text-center";
 
-          const image = item.data.image?.medium || "https://via.placeholder.com/100";
-          const name = item.data.name;
-          const id = item.data.id;
+        // Use the item's image or a placeholder if missing
+        const image = item.data.image?.medium || "images/no_image.png";
+        const name = item.data.name;
+        const id = item.data.id;
 
-          div.innerHTML = `
-            <a href="${item.type === "show" ? "show-info.html" : "person.html"}?id=${id}" class="text-decoration-none d-block h-100">
-              <img src="${image}" class="card-img-square mb-2" alt="${name}">
-              <div class="${item.type === "show" ? "show-title" : "person-name"}"><strong>${name}</strong></div>
-            </a>
-          `;
+        // Set up the card HTML
+        div.innerHTML = `
+        <a href="${item.type === "show" ? "show-info.html" : "person.html"}?id=${id}" class="text-decoration-none d-block h-100">
+          <img src="${image}" class="card-img-square mb-2" alt="${name}">
+          <div class="${item.type === "show" ? "show-title" : "person-name"}"><strong>${name}</strong></div>
+        </a>
+        `;
 
-          resultsContainer.appendChild(div);
-        });
+        resultsContainer.appendChild(div);
+      });
 
-        renderPagination();
+      renderPagination();
       }
 
+      // Render pagination controls
       function renderPagination() {
-        const totalPages = Math.ceil(combinedResults.length / resultsPerPage);
-        paginationContainer.innerHTML = "";
+      const totalPages = Math.ceil(combinedResults.length / resultsPerPage);
+      paginationContainer.innerHTML = "";
 
-        if (totalPages <= 1) return;
+      // No pagination needed if only one page
+      if (totalPages <= 1) return;
 
-        const nav = document.createElement("nav");
-        const ul = document.createElement("ul");
-        ul.className = "pagination justify-content-center flex-wrap";
+      const nav = document.createElement("nav");
+      const ul = document.createElement("ul");
+      ul.className = "pagination justify-content-center flex-wrap";
 
-        for (let i = 0; i < totalPages; i++) {
-          const li = document.createElement("li");
-          li.className = "page-item" + (i === currentPage ? " active" : "");
+      // Create a button for each page
+      for (let i = 0; i < totalPages; i++) {
+        const li = document.createElement("li");
+        li.className = "page-item" + (i === currentPage ? " active" : "");
 
-          const btn = document.createElement("button");
-          btn.className = "page-link";
-          btn.textContent = i + 1;
-          btn.addEventListener("click", () => {
-            currentPage = i;
-            renderPage();
-          });
+        const btn = document.createElement("button");
+        btn.className = "page-link";
+        btn.textContent = i + 1;
+        btn.addEventListener("click", () => {
+        currentPage = i;
+        renderPage();
+        });
 
-          li.appendChild(btn);
-          ul.appendChild(li);
-        }
+        li.appendChild(btn);
+        ul.appendChild(li);
+      }
 
-        nav.appendChild(ul);
-        paginationContainer.appendChild(nav);
+      nav.appendChild(ul);
+      paginationContainer.appendChild(nav);
       }
     });
     </script>
+    <!-- ===== End of Search Results Section ===== -->
 
   <!-- ===== Footer ===== -->
   <footer class="footer pt-5 pb-4 mt-5 border-top w-100">
@@ -203,8 +225,9 @@
       </div>
     </div>
   </footer>
+<!-- ===== End of Footer ===== -->
 
-      <!-- ===== Scripts ===== -->
+  <!-- ===== Scripts ===== -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
   </body>

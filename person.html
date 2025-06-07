@@ -1,81 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Tags -->
+  <!-- ===== Metadata and External Resources ===== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse profiles of actors, see their bios and discover which TV shows they've appeared in with Snug Hub." />
-  <meta name="keywords" content="TV actors, cast profiles, show credits, actor bios, director profiles, TV personalities, Snug Hub" />
+  <meta name="description" content="Browse profiles of actors, see their bios and discover which TV shows they've appeared in with Snug Hub."/>
+  <meta name="keywords" content="TV actors, cast profiles, show credits, actor bios, director profiles, TV personalities, Snug Hub"/>
   <title>TV Actor Bios & Show Credits | Explore People | Snug Hub</title>
-
-
   <!-- Bootstrap CSS -->
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom Styles -->
   <link rel="stylesheet" href="styles.css">
-
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
+  <header>
   <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar navbar-dark">
     <div class="container-fluid">
+      <!-- Logo and Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60">
-        Snug Hub
-      </a>
+      <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;"> Snug Hub</a>
+      <!-- Navbar Toggler (for mobile) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- Navbar Links -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li>
-          <li class="nav-item"><a class="nav-link" href="people.html">People</a></li>
-          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html" aria-current="page">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shows.html">Shows</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="people.html">People</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="schedule.html">Schedule</a>
+          </li>
         </ul>
       </div>
-      <form id="globalSearchForm" class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form" role="search" autocomplete="off">
-        <input id="globalSearchInput" class="form-control me-2 search-input" type="search" placeholder="Search people or shows..." aria-label="Search">
-        <button class="btn custom-search-btn" type="submit">Search</button>
-        <div id="searchDropdown" class="list-group position-absolute w-100" style="top: 100%; z-index: 1000; display: none;"></div>
-      </form>
-    </div>
-  </nav>
+<!-- Search Form -->
+<form id="globalSearchForm"
+      class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
+      role="search" autocomplete="off" style="max-width: 100%;">
+  
+<input id="globalSearchInput"
+       class="form-control me-2 search-input"
+       type="search"
+       role="combobox"
+       placeholder="Search people or shows..."
+       aria-label="Search people or shows"
+       aria-autocomplete="list"
+       aria-expanded="true"
+       aria-controls="searchDropdown"
+       aria-activedescendant=""
+       style="min-width: 0; flex: 1;"/>
+  
+  <button class="btn custom-search-btn" type="submit" aria-label="Submit search">Search</button>
 
-  <!-- Main Content: Person Details -->
+  <!-- Live search dropdown -->
+<div id="searchDropdown"
+     role="listbox"
+     class="list-group position-absolute w-100"
+     style="top: 100%; z-index: 1000; display: none;"></div>
+
+</form>
+  </nav>
+  <!-- ===== End of Navigation Bar ===== -->
+  </header>
+
+  <!-- ===== Main Content ===== -->
+<main>
   <div class="container py-5" id="personDetails">
     <p>Loading...</p>
   </div>
 
 <script>
+  // Get the container for person details
   const personDetails = document.getElementById('personDetails');
+  // Parse the URL to get the person ID
   const params = new URLSearchParams(window.location.search);
   const personId = params.get('id');
 
+  // If no person ID is found, show an error message
   if (!personId) {
     personDetails.innerHTML = '<p>Person not found.</p>';
   } else {
-    let personData = null;
-    let castCredits = [];
+    let personData = null;    // Will hold the fetched person data
+    let castCredits = [];     // Will hold the fetched cast credits
 
+    // Fetch person info and their cast credits from TVmaze API
     async function fetchPerson() {
+      // Fetch person details
       const personRes = await fetch(`https://api.tvmaze.com/people/${personId}`);
       personData = await personRes.json();
 
+      // Fetch cast credits with embedded show and character info
       const creditsRes = await fetch(`https://api.tvmaze.com/people/${personId}/castcredits?embed[]=show&embed[]=character`);
       castCredits = await creditsRes.json();
 
+      // Render the details on the page
       renderPersonDetails();
     }
 
+    // Render the person details and credits into the DOM
     function renderPersonDetails() {
       personDetails.innerHTML = `
         <h1 class="mb-3">${personData.name}</h1>
 
+        <!-- Tabs for Info and Cast Credits -->
         <ul class="nav nav-tabs" id="personTabs" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button" role="tab">Info</button>
@@ -86,9 +125,11 @@
         </ul>
 
         <div class="tab-content pt-4">
+          <!-- Info Tab -->
           <div class="tab-pane fade show active" id="info" role="tabpanel">
             <div class="row">
               <div class="col-md-4 mb-3">
+                <!-- Person image -->
                 <img src="${personData.image?.original || 'images/no_image.png'}" onerror="this.onerror=null; this.src='images/no_image.png';" class="img-fluid rounded" alt="${personData.name}">
               </div>
               <div class="col-md-8">
@@ -96,6 +137,7 @@
                 <p><strong>Gender:</strong> ${personData.gender ?? 'N/A'}</p>
                 <p><strong>Country:</strong> ${personData.country?.name ?? 'N/A'}</p>
 
+                <!-- Known For section: shows top 3 credits -->
                 <div class="mt-4">
                   <h5>Known For</h5>
                   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -113,11 +155,12 @@
             </div>
           </div>
 
+          <!-- Cast Credits Tab -->
           <div class="tab-pane fade" id="credits" role="tabpanel">
             <div class="row row-cols-2 row-cols-md-4 g-3">
               ${castCredits.map(c => `
                 <div class="col text-center">
-                  <a href="show.html?id=${c._embedded.show.id}" class="text-decoration-none d-block">
+                  <a href="show-info.html?id=${c._embedded.show.id}" class="text-decoration-none d-block">
                     <img src="${c._embedded.show.image?.medium || 'images/no_image.png'}" onerror="this.onerror=null; this.src='images/no_image.png';" class="img-fluid rounded mb-2" alt="${c._embedded.show.name}" />
                     <div class="show-name"><strong>${c._embedded.show.name}</strong></div>
                   </a>
@@ -130,9 +173,12 @@
       `;
     }
 
+    // Start fetching and rendering person details
     fetchPerson();
   }
 </script>
+</main>
+  <!-- ===== End of Main Content ===== -->  
 
   <!-- ===== Footer ===== -->
   <footer class="footer pt-5 pb-4 mt-5 border-top w-100">
@@ -162,8 +208,9 @@
       </div>
     </div>
   </footer>
+  <!-- ===== End of Footer ===== -->
 
-  <!-- Bootstrap JS -->
+  <!-- Scripts -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>

@@ -4,77 +4,80 @@
 
 /* Styling for the navigation links in the navbar */
 .navbar-nav .nav-link {
-  color: #ffffff; 
+  color: #ffffff; /* White text for nav links */
 }
 
 /* Styling for navigation links when hovered */
 .navbar-nav .nav-link:hover {
-  color: #785cbe; 
+  color: #785cbe; /* Purple on hover */
 }
 
 /* Styling for the active navigation link */
 .navbar-nav .nav-link.active {
-  color: #ffffff; 
-  font-weight: bold; 
+  color: #ffffff; /* White for active link */
+  font-weight: bold; /* Bold active link */
 }
 
 /* Styling for the website title in the navbar */
 .navbar-brand {
-  font-family: 'Nunito', sans-serif; /* Font family for the brand */
-  color: #ffffff; /* Override color for the brand */
-  font-weight: 750; 
+  font-family: 'Nunito', sans-serif; /* Custom font */
+  color: #ffffff; /* White brand text */
+  font-weight: 750; /* Heavy font weight */
 }
 
 /* Styling for the navbar brand when hovered */
 .navbar-brand:hover {
-  color: #ffffff !important; /* Ensure the hover color is white */
+  color: #ffffff !important; /* Keep white on hover */
 }
 
 /* Custom styling for the navbar */
 .custom-navbar {
   padding-top: 0%; /* Remove top padding */
   padding-bottom: 0%; /* Remove bottom padding */
-  min-height: 0px; /* Optional: control overall height of the navbar */
-  background-color: #000000; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  min-height: 0px; /* Remove min height */
+  background-color: #000000; /* Black background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 /* Custom styling for the search button */
 .custom-search-btn {
-  font-size: 18px; /* Set font size for the button text */
-  padding: 10px 20px; /* Add padding for the button */
-  border-radius: 8px; /* Round the corners of the button */
-  background-color: #52359A; /* Set background color */
-  color: #ffffff; /* Set text color */
+  font-size: 18px; /* Button text size */
+  padding: 10px 20px; /* Button padding */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #52359A; /* Purple background */
+  color: #ffffff; /* White text */
 }
 
 /* Styling for the search button when hovered */
 .custom-search-btn:hover {
-  background-color: #785cbe; /* Change background color to black on hover */
-  color: white; /* Change text color to white on hover */
+  background-color: #785cbe; /* Lighter purple on hover */
+  color: white; /* White text on hover */
 }
 
+/* Dropdown for live search results */
 #searchDropdown {
   position: absolute;
   top: 100%;
   z-index: 1000;
   display: none;
-  width: 100%; /* 🔥 Make it match the search input width */
-  max-width: 600px; /* Prevent it from growing wider */
+  width: 100%; /* Match search input width */
+  max-width: 600px; /* Limit width */
 }
 
 /* Change link color on hover in live search results */
 #searchDropdown a:hover,
 #searchDropdown .list-group-item:hover {
-  background-color: #785cbe !important;
-  color: #ffffff;
+  background-color: #785cbe !important; /* Highlight background */
+  color: #ffffff; /* White text */
 }
 
+/* Special hover for bolded center items */
 #searchDropdown .list-group-item.text-center.fw-bold:hover {
   background-color: #785cbe !important;
   color: #ffffff;
 }
 
+/* Search input field styling */
 #globalSearchInput {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
@@ -82,17 +85,20 @@
   height: auto; 
 }
 
+/* Consistent search button styling */
 .custom-search-btn {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
   font-size: 1rem;
 }
 
+/* Active item in search dropdown */
 .list-group-item.active {
   background-color: #785cbe;
   color: white;
 }
 
+/* Last item in dropdown hover/focus/active */
 #searchDropdown .list-group-item:last-child:hover,
 #searchDropdown .list-group-item:last-child:focus,
 #searchDropdown .list-group-item:last-child.active {
@@ -100,58 +106,56 @@
   color: white;
 }
 
-
-
 /* =========================
   Global styles
   ========================= */
 body {
-  font-family: 'Nunito', sans-serif; /* Font family for the body */
-  background-color: #191919; /* Light gray background color */
+  font-family: 'Nunito', sans-serif; /* Body font */
+  background-color: #191919; /* Dark background */
   margin: 0; /* Remove default margin */
   padding: 0; /* Remove default padding */
   color: #ffffff; /* Default text color */
 }
 
+/* Main heading style */
 #heading {
   font-size: 2.25rem;
   margin-bottom: 0 !important;
 }
 
+/* Subheading style */
 #subheading {
   font-size: 1rem; 
 }
 
-
-
 /* =========================
-  Hero section styles
+  Index Page Hero section styles
   ========================= */
 
 /* Styling for the hero section */
 .hero {
-  background-color: #191919; /* Primary background color */
-  background-size: cover; /* Ensure background covers the section */
-  height: 60vh; /* Set height to 60% of the viewport */
-  display: flex; /* Use flexbox for layout */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
-  text-align: center; /* Center text alignment */
-  color: #ffffff; /* text colour */
+  background-color: #191919; /* Section background */
+  background-size: cover; /* Cover background */
+  height: 60vh; /* 60% viewport height */
+  display: flex; /* Flex layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  text-align: center; /* Center text */
+  color: #ffffff; /* White text */
 }
 
-/* Styling for the main heading in the hero section */
+/* Main heading in hero */
 .hero h1 {
-  font-size: 3rem; /* Large font size for the heading */
-  font-weight: 700; /* Bold font weight */
+  font-size: 3rem; 
+  font-weight: 700; 
 }
 
-/* Styling for the paragraph in the hero section */
+/* Paragraph in hero */
 .hero p {
-  font-size: 1.25rem; /* Medium font size for the paragraph */
+  font-size: 1.25rem; 
 }
 
-/* Styling for the hero section button */
+/* Hero section button */
 .hero-button {
   display: inline-block;
   padding: 1rem 2rem;
@@ -169,35 +173,33 @@ body {
   background-color: #785cbe;
 }
 
-
-
 /* =========================
   Content section styles
   ========================= */
 
-/* Styling for content sections */
+/* Content section padding and color */
 .content-section {
-  padding: 2rem 0; /* Add vertical padding */
-  color: #ffffff; /* Text color */
+  padding: 2rem 0; /* Vertical padding */
+  color: #ffffff; /* White text */
 }
 
 /* =========================
   Card carousel styles
   ========================= */
 
-/* Styling for images in cards */
+/* Card images in carousel */
 .card-img-top {
-  height: 350px; /* Set fixed height for images */
-  object-fit: cover; /* Ensure images cover the area without distortion */
+  height: 350px; /* Fixed height */
+  object-fit: cover; /* Cover image */
 }
 
-/* Styling for the search input field */
+/* Search input width in carousel */
 .search-form .search-input {
-  width: 600px; /* Set width for the search input */
-  max-width: 100%; /* Ensure it doesn't exceed the container width */
+  width: 600px; /* Fixed width */
+  max-width: 100%; /* Responsive */
 }
 
-/* Wrapper for the entire carousel */
+/* Carousel wrapper layout */
 .carousel-wrapper {
   display: flex;
   align-items: center;
@@ -209,23 +211,23 @@ body {
   padding: 0; /* Remove horizontal padding */
 }
 
-/* Styling for the card carousel container */
+/* Card carousel container */
 .card-carousel {
-  display: flex; /* Use flexbox for horizontal layout */
-  overflow-x: hidden; /* Hides horizontal scrollbars */
-  gap: 1rem; /* Add spacing between cards */
-  padding: 1rem 2rem; /* Add padding around the carousel */
+  display: flex; /* Horizontal layout */
+  overflow-x: hidden; /* Hide scrollbars */
+  gap: 1rem; /* Space between cards */
+  padding: 1rem 2rem; /* Padding around carousel */
 }
 
-/* Styling for individual cards in the carousel */
+/* Individual cards in carousel */
 .card {
-  min-width: 250px; /* Set minimum width for cards */
-  flex: 0 0 auto; /* Prevent cards from shrinking or growing */
+  min-width: 250px; /* Minimum width */
+  flex: 0 0 auto; /* No grow/shrink */
 }
 
 /* Smaller card width for carousel */
 .card-carousel .card {
-  width: 160px; /* smaller than the default 200-300px*/
+  width: 160px; /* Smaller width */
   border:#000000;
 }
 
@@ -252,75 +254,34 @@ body {
   cursor: pointer;
 }
 
-/* Styling for the carousel navigation arrows */
+/* Carousel navigation arrows */
 .carousel-arrow {
-  top: 50%; /* Center arrows vertically */
-  transform: translateY(-50%); /* Adjust for perfect vertical centering */
-  background-color: #785cbe; /* Semi-transparent black background */
-  color: white; /* White arrow color */
-  border: none; /* Remove default border */
-  font-size: 2rem; /* Large font size for arrows */
-  padding: 0.5rem 1rem; /* Add padding for clickable area */
-  z-index: 10; /* Ensure arrows appear above other elements */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+  background-color: #785cbe; /* Purple background */
+  color: white; /* White arrow */
+  border: none; /* No border */
+  font-size: 2rem; /* Large arrow */
+  padding: 0.5rem 1rem; /* Padding */
+  z-index: 10; /* On top */
+  cursor: pointer; /* Pointer cursor */
 }
 
-/* Styling for the left navigation arrow */
+/* Left navigation arrow */
 .carousel-arrow.left {
-  left: 0; /* Position arrow on the left */
+  left: 0; 
 }
 
-/* Styling for the right navigation arrow */
+/* Right navigation arrow */
 .carousel-arrow.right {
-  right: 0; /* Position arrow on the right */
-}
-
-/* =========================
-  Footer styles
-  ========================= */
-
-.footer {
-  background-color: #191919;
-  color: #ffffff;
-  width: 100%;
-}
-
-.footer-inner {
-  width: 100%;
-  padding: 0 2rem;
-}
-
-.footer-columns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: space-between;
-}
-
-.footer-column {
-  flex: 1 1 300px;
-}
-
-.footer h3 {
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: #ffffff;
-}
-
-.footer a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.footer a:hover {
-  color: #785cbe;
+  right: 0; 
 }
 
 /* =========================
   People page styles
   ========================= */
 
-/* Styling for individual person cards */
+/* Individual person cards */
 .person {
   border: 1px solid #ccc;
   padding: 10px; 
@@ -328,20 +289,17 @@ body {
   text-align: center;
 }
 
-/* Styling for images inside person cards */
+/* Images inside person cards */
 .person img {
   width: 100%; 
   height: auto; 
 }
 
-
-
 /* =========================
   Show info page styles
   ========================= */
-    /* --- Cast Image Styling --- */
 
-
+/* Square card images */
 .card-img-square {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -349,18 +307,21 @@ body {
   border-radius: 8px;
 }
 
-    .cast-img:hover {
-      transform: scale(1.05);
-      cursor: pointer;
-    }
+/* Cast image hover effect */
+.cast-img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
 
-    #cast-name {
-      color: #ffffff; 
-    }
+/* Cast name color */
+#cast-name {
+  color: #ffffff; 
+}
 
-    #character-name {
-      color: #ffffff
-    } 
+/* Character name color */
+#character-name {
+  color: #ffffff
+} 
 
 /* Default actor name style */
 .cast-link strong {
@@ -368,18 +329,17 @@ body {
   transition: color 0.2s ease;
 }
 
-/* Hover effect */
+/* Hover effect for actor name */
 .cast-link:hover strong {
   color: #785cbe; 
 }
-
 
 /* ========== Custom Episode Accordion Styles ========== */
 
 /* Accordion button (episode title bar) */
 #episodesAccordion .accordion-button {
-  background-color: #52359A; /* purple background */
-  color: #ffffff; /* white text */
+  background-color: #52359A; /* Purple background */
+  color: #ffffff; /* White text */
   font-weight: 600;
   border-radius: 6px;
   transition: background-color 0.3s ease;
@@ -394,7 +354,7 @@ body {
 
 /* Accordion button when expanded */
 #episodesAccordion .accordion-button:not(.collapsed) {
-  background-color: #785cbe; /* slightly different when expanded */
+  background-color: #785cbe; /* Lighter purple */
   color: #ffffff;
   box-shadow: none;
 }
@@ -406,19 +366,17 @@ body {
   margin-bottom: 10px;
 }
 
-/* Accordion body (inside the opened tab) */
+/* Accordion body (opened tab) */
 #episodesAccordion .accordion-body {
-  background-color: #2b2b2b; /* dark inner background */
+  background-color: #2b2b2b; /* Dark background */
   color: #ffffff;
   border-radius: 0 0 6px 6px;
 }
 
-/* Change color of the accordion arrow in the Episodes tab */
+/* Accordion arrow color */
 #episodesAccordion .accordion-button::after {
-  filter: brightness(0) invert(1); /* makes it white */
+  filter: brightness(0) invert(1); /* White arrow */
 }
-
-
 
 /* =========================
   Tab navigation styles
@@ -456,11 +414,13 @@ body {
   Visit Official Page button styles
   ========================= */
 
+/* Primary button color */
 .btn-primary {
   background-color: #52359A;
   border-color: #52359A;
 }
 
+/* Primary button hover */
 .btn-primary:hover {
   background-color: #785cbe;
   border-color: #785cbe;
@@ -470,25 +430,27 @@ body {
   Load More Cast button styles
   ========================= */
 
+/* Load More Cast button */
 #loadMoreCast {
-  font-size: 1rem; /* Set font size for the button text */
-  padding: 0.5rem 1rem; /* Add padding for the button */
-  background-color: #52359A; /* Set background color */
-  color: #ffffff; /* Set text color */
-  border-radius: 8px; /* Round the corners of the button */
+  font-size: 1rem; /* Button text size */
+  padding: 0.5rem 1rem; /* Padding */
+  background-color: #52359A; /* Purple background */
+  color: #ffffff; /* White text */
+  border-radius: 8px; /* Rounded corners */
 }
 
+/* Load More Cast button hover */
 #loadMoreCast:hover {
-  background-color: #785cbe; /* Change background color on hover */
-  color: #ffffff; /* Change text color on hover */
-  cursor: pointer; /* Change cursor to pointer on hover */
+  background-color: #785cbe; /* Lighter purple */
+  color: #ffffff; /* White text */
+  cursor: pointer; /* Pointer cursor */
 }
 
 /* =========================
   Person page styles
   ========================= */
 
-/* Cast image styling (duplicate for person page) */
+/* Cast image styling (person page) */
 .cast-img {
   width: 80px;
   height: 80px;
@@ -503,29 +465,30 @@ body {
   margin: 0 auto;
 }
 
+/* People page heading */
 #people-heading {
-  color: #ffffff; /* White color for the heading */
+  color: #ffffff; /* White heading */
 }
 
-/* Styling for the show title */
+/* Person name styling */
 .person-name strong {
   color: white;
 }
 
+/* Person name hover effect */
 a:hover .person-name strong {
-  color: #785cbe; /* Change color on hover */
+  color: #785cbe; /* Purple on hover */
 }
 
+/* Show name styling */
 .show-name {
   color: #ffffff;
 }
 
+/* Show name hover effect */
 .show-name:hover {
   color: #785cbe;
 }
-
-
-
 
 /* =========================
   Pagination styles
@@ -537,10 +500,11 @@ a:hover .person-name strong {
 }
 
 /* Regular pagination buttons */
+/* Regular pagination buttons */
 .page-item .page-link {
-  background-color: #f8f9fa; 
-  color: #333; 
-  transition: background-color 0.3s, color 0.3s;
+  background-color: #f8f9fa; /* Light background */
+  color: #333; /* Dark text */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
 }
 
 /* Hover state */
@@ -574,14 +538,14 @@ a:hover .person-name strong {
   margin: 0 auto;
 }
 
-/* Styling for the show images */
+/* Show images styling */
 .card-img-square {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Full width */
+  height: 280px; /* Fixed height for show images */
+  object-fit: cover; /* Maintain aspect ratio, cover area */
+  border-radius: 8px; /* Rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transitions */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 /* Show image hover effect */
@@ -590,41 +554,47 @@ a:hover .person-name strong {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* TV shows heading */
 #tv-shows-heading {
   color: #ffffff; 
 }
 
-  .search-icon {
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    color: #191919;
-    pointer-events: none;
-  }
+/* Search icon positioning */
+.search-icon {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #191919;
+  pointer-events: none;
+}
 
 /* =========================
   Schedule page styles
   ========================= */
 
-/* Show link styles */
+/* Show link styles in schedule table */
 #scheduleTable tbody td a {
   color: #000000;
 }
 
+/* Show link hover in schedule table */
 #scheduleTable tbody td a:hover {
   color: #785cbe !important; 
 }
 
+/* Table body text color */
 #scheduleTable tbody td {
   color: #000000; 
 }
 
+/* Table header styling */
 #scheduleTable thead th {
-  background-color: #52359A; /* Purple background for header */
-  color: white; /* White text for header */
-  font-weight: bold; /* Bold font for header */
+  background-color: #52359A; /* Purple header */
+  color: white; /* White text */
+  font-weight: bold; /* Bold header */
 }
 
+/* Table row background */
 #scheduleTable tbody tr{
   background-color: #f5f5f5; 
 }
@@ -635,6 +605,7 @@ a:hover .person-name strong {
   color: white;
 }
 
+/* Dropdown active item */
 .bootstrap-select .dropdown-menu li.active > a {
   background-color: #52359A;
   color: white;
@@ -649,50 +620,100 @@ a:hover .person-name strong {
   border: 1px solid #ced4da;
   background-color: #fff;
   line-height: 1.5;
-}
-#scheduleDate {
   width: 100%;
 }
-
 
 /* =========================
   Show title styles
   ========================= */
 
-/* Styling for the show title */
+/* Show title styling */
 .show-title strong {
   color: white;
 }
 
+/* Show title hover effect */
 a:hover .show-title strong {
-  color: #785cbe; /* Change color on hover */
+  color: #785cbe; /* Purple on hover */
 }
-
 
 /* Show image hover effect */
 .show-img-square:hover {
+  /* Enlarge show image slightly on hover */
   transform: scale(1.05);
+  /* Add a stronger shadow on hover */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-
+/* Person name heading */
 #person-name {
-  color: #ffffff; /* White color for the heading */
+  color: #ffffff; /* White heading */
 }
 
+/* Person name hover effect */
 #person-name:hover {
-  color: #785cbe; /* Highlight color on hover */
+  color: #785cbe; /* Purple on hover */
 } 
 
 /* =========================
   Search Results page
   ========================= */
 
+/* Search results heading */
 #search-heading {
-font-size: 2.25rem;
-margin-bottom: 0 !important;
+  font-size: 2.25rem;
+  margin-bottom: 0 !important;
 }
 
+/* Search results subheading */
 #search-subheading {
   font-size: 1rem; 
+}
+
+/* =========================
+  Footer styles
+  ========================= */
+
+/* Footer background and color */
+.footer {
+  background-color: #191919;
+  color: #ffffff;
+  width: 100%;
+}
+
+/* Footer inner padding */
+.footer-inner {
+  width: 100%;
+  padding: 0 2rem;
+}
+
+/* Footer columns layout */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+/* Individual footer column */
+.footer-column {
+  flex: 1 1 300px;
+}
+
+/* Footer heading */
+.footer h3 {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+/* Footer links */
+.footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Footer link hover */
+.footer a:hover {
+  color: #785cbe;
 }

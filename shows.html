@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Find your next favorite TV show on Snug Hub. Browse and filter by genre, language, and country to discover what to watch next." />
-  <meta name="keywords" content="TV shows, comfort shows, stream TV, shows by genre, shows by country, shows by language, Snug Hub, TV series guide" />
+  <!-- ===== Metadata and External Resources ===== -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Find your next favorite TV show on Snug Hub. Browse and filter by genre, language, and country to discover what to watch next."/>
+  <meta name="keywords" content="TV shows, comfort shows, stream TV, shows by genre, shows by country, shows by language, Snug Hub, TV series guide"/>
   <title>Browse TV Shows by Genre, Language & Country | Snug Hub</title>
-
   <!-- Bootstrap CSS -->
    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-  
+  <!-- Font Awesome Icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
+ <header>
   <!-- ===== Navigation Bar ===== -->
   <nav class="navbar navbar-expand-lg custom-navbar navbar-dark">
     <div class="container-fluid">
       <!-- Logo and Brand -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;">
-        Snug Hub
-      </a>
+        <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;"> Snug Hub</a>
       <!-- Navbar Toggler (for mobile) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -70,21 +67,23 @@
        style="top: 100%; z-index: 1000; display: none;"></div>
 </form>
   </nav>
+  <!-- ===== End of Navigation Bar ===== -->
+ </header>
 
+
+    <!-- ===== Main Content ===== -->
+  <main>
   <div class="container py-4">
     <!-- Page Title -->
         <h1 id="heading" class="text-center">Shows</h1>
         <h2 id="subheading" class="text-center">Love drama? Crave comedy? Browse and find your next binge watch!</h2>
-
     <!-- Search + Filters + Sort Row -->
     <div class="row g-2 mb-4 align-items-center">
-      <!-- Search Bar (leftmost) -->
+      <!-- Search Bar -->
 <div class="col-md-3 position-relative">
   <i class="fa-solid fa-magnifying-glass position-absolute search-icon"></i>
   <input type="text" id="searchShows" class="form-control form-control-sm ps-4" placeholder="Search shows...">
 </div>
-
-
       <!-- Genre Filter -->
       <div class="col-md-2">
         <select id="filterGenre" class="form-select form-select-sm">
@@ -121,19 +120,14 @@
       </div>
     </div>
 
-     <!-- ===== Loading Spinner ===== -->
-  <div id="loadingSpinner" class="text-center my-4" style="display: none;">
-  <div class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>
-
     <!-- Show Grid -->
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6 g-2" id="shows"></div>
 
     <!-- Pagination Controls -->
     <div id="pagination" class="mt-4 text-center"></div>
   </div>
+</main>
+  <!-- ===== End of Main Content ===== -->
 
   <!-- ===== Footer ===== -->
   <footer class="footer pt-5 pb-4 mt-5 border-top w-100">
@@ -163,8 +157,10 @@
       </div>
     </div>
   </footer>
-  <script>
+  <!-- ===== End of Footer ===== -->
 
+  <!-- ===== JavaScript Page Logic ===== -->
+  <script>
 // Fetch popular shows and render them in a live dropdown
 document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('globalSearchInput');
@@ -420,11 +416,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
  
   </script>
+  <!-- ===== End of JavaScript Page Logic ===== -->
 
-  <!-- Bootstrap JS Bundle -->
+  <!-- Scripts -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom JS for Shows Page -->
   <script src="script.js"></script>
-  <script src="loading-spinner.js"></script>
 </body>
 </html>

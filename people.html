@@ -2,72 +2,83 @@
 <html lang="en">
 <head>
   <!-- ===== Metadata and External Resources ===== -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore a diverse cast of actors on Snug Hub. Filter by gender and country to find your favorites and discover new talent." />
-  <meta name="keywords" content="actors, actresses, TV industry, TV personalities, discover actors, find actors, actor profiles" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Explore a diverse cast of actors on Snug Hub. Filter by gender and country to find your favorites and discover new talent."/>
+  <meta name="keywords" content="actors, actresses, TV industry, TV personalities, discover actors, find actors, actor profiles"/>
   <title>Browse Actors by Country and Gender | Snug Hub</title>
-  
   <!-- Bootstrap CSS -->
   <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
+  <!-- Font Awesome Icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg custom-navbar navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
-          <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60"> Snug Hub
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-          <ul class="navbar-nav mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="shows.html">Shows</a></li>
-            <li class="nav-item"><a class="nav-link active" href="people.html">People</a></li>
-            <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
-          </ul>
-        </div>
-
-        <!-- Search Form -->
-        <form id="globalSearchForm"
-              class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
-              role="search" autocomplete="off" style="max-width: 100%;">
-          <input id="globalSearchInput"
-                 class="form-control me-2 search-input"
-                 type="search"
-                 role="combobox"
-                 placeholder="Search people or shows..."
-                 aria-label="Search people or shows"
-                 aria-autocomplete="list"
-                 aria-expanded="true"
-                 aria-controls="searchDropdown"
-                 aria-activedescendant=""
-                 style="min-width: 0; flex: 1;" />
-          <button class="btn custom-search-btn" type="submit" aria-label="Submit search">Search</button>
-          <div id="searchDropdown"
-               role="listbox"
-               class="list-group position-absolute w-100"
-               style="top: 100%; z-index: 1000; display: none;"></div>
-        </form>
+<header>
+  <!-- ===== Navigation Bar ===== -->
+  <nav class="navbar navbar-expand-lg custom-navbar navbar-dark">
+    <div class="container-fluid">
+      <!-- Logo and Brand -->
+      <a class="navbar-brand" href="index.html">
+      <img src="images/snug-logo.png" alt="Snug Hub Logo" width="60" height="60" style="margin-right: 0px;"> Snug Hub</a>
+      <!-- Navbar Toggler (for mobile) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html" aria-current="page">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="shows.html">Shows</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="people.html">People</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="schedule.html">Schedule</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header>
+<!-- Search Form -->
+<form id="globalSearchForm"
+      class="d-flex flex-grow-1 flex-md-grow-0 align-items-center position-relative search-form"
+      role="search" autocomplete="off" style="max-width: 100%;">
+  
+<input id="globalSearchInput"
+       class="form-control me-2 search-input"
+       type="search"
+       role="combobox"
+       placeholder="Search people or shows..."
+       aria-label="Search people or shows"
+       aria-autocomplete="list"
+       aria-expanded="true"
+       aria-controls="searchDropdown"
+       aria-activedescendant=""
+       style="min-width: 0; flex: 1;"/>
+  
+  <button class="btn custom-search-btn" type="submit" aria-label="Submit search">Search</button>
 
-  <div class="container py-4">
+  <!-- Live search dropdown -->
+<div id="searchDropdown"
+     role="listbox"
+     class="list-group position-absolute w-100"
+     style="top: 100%; z-index: 1000; display: none;"></div>
+
+</form>
+  </nav>
+  <!-- ===== End of Navigation Bar ===== -->
+  </header>
+<main>
+  <!-- ===== Main Content ===== -->
+ <div class="container py-4">
     <h1 id="heading" class="text-center">People</h1>
     <h2 id="subheading" class="text-center">From red carpets to directors' chairs — find your faves!</h2>
 
@@ -102,7 +113,10 @@
     </div>
     <div id="pagination" class="mt-4 text-center"></div>
   </div>
+</main>
+  <!-- ===== End of Main Content ===== -->
 
+  <!-- ===== Footer ===== -->
   <footer class="footer pt-5 pb-4 mt-5 border-top w-100">
     <div class="container-fluid px-4">
       <div class="row">
@@ -125,10 +139,13 @@
       <div class="text-center small mt-3 pb-2">© 2025 Snug Hub.</div>
     </div>
   </footer>
+  <!-- ===== End of Footer ===== -->
 
-  <!-- People Logic Inline Script -->
+  <!-- ===== JavaScript Page Logic ===== -->
   <script>
+    // Wait for the DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', () => {
+      // Get references to DOM elements
       const container = document.getElementById('people');
       const paginationContainer = document.getElementById('pagination');
       const searchInput = document.getElementById('searchPeople');
@@ -136,12 +153,14 @@
       const filterCountry = document.getElementById('filterCountry');
       const sortPeople = document.getElementById('sortPeople');
 
+      // Pagination and filtering variables
       const rowsToShow = 3;
       const peoplePerPage = rowsToShow * 6;
       let currentPage = 0;
       let currentData = [];
       let filterTerm = '';
 
+      // Fetch people data from TVmaze API
       function fetchPeople(page) {
         fetch(`https://api.tvmaze.com/people?page=${page}`)
           .then(res => res.json())
@@ -153,8 +172,10 @@
           .catch(err => console.error('Error fetching data:', err));
       }
 
+      // Render people cards based on filters, sorting, and pagination
       function renderPeople() {
         container.innerHTML = '';
+        // Filter data by search, gender, and country
         let filtered = currentData.filter(person => {
           const nameMatch = person.name?.toLowerCase().includes(filterTerm.toLowerCase());
           const genderMatch = !filterGender.value || (person.gender && person.gender.toLowerCase() === filterGender.value.toLowerCase());
@@ -162,17 +183,20 @@
           return nameMatch && genderMatch && countryMatch;
         });
 
+        // Sort data if needed
         if (sortPeople.value === 'az') {
           filtered.sort((a, b) => a.name.localeCompare(b.name));
         } else if (sortPeople.value === 'za') {
           filtered.sort((a, b) => b.name.localeCompare(a.name));
         }
 
+        // Pagination logic
         const totalPages = Math.ceil(filtered.length / peoplePerPage);
         const start = currentPage * peoplePerPage;
         const end = start + peoplePerPage;
         const displayData = filtered.slice(start, end);
 
+        // Render each person card
         displayData.forEach(person => {
           const div = document.createElement('div');
           div.className = 'col text-center';
@@ -185,9 +209,11 @@
           container.appendChild(div);
         });
 
+        // Render pagination controls
         renderPagination(filtered.length, totalPages);
       }
 
+      // Render pagination buttons
       function renderPagination(totalResults, totalPages) {
         paginationContainer.innerHTML = '';
         const nav = document.createElement('nav');
@@ -198,6 +224,7 @@
         const startPage = Math.floor(currentPage / maxVisiblePages) * maxVisiblePages;
         const endPage = Math.min(startPage + maxVisiblePages, totalPages);
 
+        // Previous page group button
         if (startPage > 0) {
           const li = document.createElement('li');
           li.className = 'page-item';
@@ -209,6 +236,7 @@
           ul.appendChild(li);
         }
 
+        // Page number buttons
         for (let i = startPage; i < endPage; i++) {
           const li = document.createElement('li');
           li.className = 'page-item' + (i === currentPage ? ' active' : '');
@@ -223,6 +251,7 @@
           ul.appendChild(li);
         }
 
+        // Next page group button
         if (endPage < totalPages) {
           const li = document.createElement('li');
           li.className = 'page-item';
@@ -238,6 +267,7 @@
         paginationContainer.appendChild(nav);
       }
 
+      // Populate country filter dropdown with unique country names
       function populateFilterOptions() {
         const countries = Array.from(
           new Set(currentData.map(p => p.country?.name).filter(Boolean))
@@ -247,6 +277,7 @@
           countries.map(c => `<option value="${c}">${c}</option>`).join('');
       }
 
+      // Event listeners for search and filters
       searchInput?.addEventListener('input', (e) => {
         filterTerm = e.target.value;
         currentPage = 0;
@@ -268,6 +299,7 @@
         renderPeople();
       });
 
+      // Keyboard navigation for pagination (left/right arrows)
       document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') {
           currentPage++;
@@ -278,11 +310,13 @@
         }
       });
 
+      // Initial fetch and render
       if (container) fetchPeople(currentPage);
     });
   </script>
+  <!-- ===== End of JavaScript Page Logic ===== -->
 
-  <!-- Bootstrap + Script.js -->
+  <!-- Scripts -->
   <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
