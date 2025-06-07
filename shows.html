@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
+// Main logic for fetching and displaying shows
 document.addEventListener('DOMContentLoaded', () => {
   // Get references to DOM elements
   const showsContainer = document.getElementById('shows');
@@ -245,7 +245,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterCountry = document.getElementById('filterCountry');
   const filterType = document.getElementById('filterType');
   const sortBy = document.getElementById('sortBy');
-
+  
+    // Show "no results found" if there are no shows to display with the chosen filters
+  const observer = new MutationObserver(() => {
+    const showCards = showsContainer.querySelectorAll('.col');
+    let noResults = document.getElementById('noResultsMsg');
+    if (showCards.length === 0) {
+      if (!noResults) {
+        noResults = document.createElement('div');
+        noResults.id = 'noResultsMsg';
+        noResults.className = 'w-100 text-center py-4';
+        noResults.textContent = 'No results found';
+        showsContainer.appendChild(noResults);
+      }
+    } else if (noResults) {
+      noResults.remove();
+    }
+  });
+  observer.observe(showsContainer, { childList: true });
+  
   // Number of shows to display per page
   const SHOWS_PER_PAGE = 18;
   let allShows = []; 

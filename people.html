@@ -153,6 +153,31 @@
       const filterCountry = document.getElementById('filterCountry');
       const sortPeople = document.getElementById('sortPeople');
 
+      function showNoResultsMessage() {
+        // Remove existing message if any
+        const existing = document.getElementById('noResultsMsg');
+        if (existing) existing.remove();
+
+        // Only show if there are no people to display
+        if (
+          currentData.length > 0 &&
+          container.children.length === 0
+        ) {
+          const msg = document.createElement('div');
+          msg.id = 'noResultsMsg';
+          msg.className = 'w-100 text-center py-4';
+          msg.textContent = 'No results found.';
+          container.parentElement.appendChild(msg);
+        }
+      }
+
+      // Render People to call showNoResultsMessage after rendering
+      const originalRenderPeople = renderPeople;
+      renderPeople = function () {
+        originalRenderPeople.apply(this, arguments);
+        showNoResultsMessage();
+      };
+
       // Pagination and filtering variables
       const rowsToShow = 3;
       const peoplePerPage = rowsToShow * 6;
